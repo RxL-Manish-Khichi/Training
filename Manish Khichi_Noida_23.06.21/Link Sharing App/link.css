@@ -1,0 +1,61 @@
+
+.navbar{
+    margin-top: 2%;
+
+    margin-right: 8%;
+
+}
+#ds
+{
+    float:right;
+    margin-top: 0%;
+}
+#l1{
+    float: right;
+
+}
+#l2{
+    width: 40rem;
+
+}
+#l3{
+    width: 40rem;
+
+}
+#pi1{
+    width: 100px;
+    height: 100px;
+}
+#cardch{
+    width: 40rem;
+    
+}
+
+#card3{
+    width: 40rem;
+
+}
+#hm1{
+    text-align: center;
+}
+#b11{
+    background-color: cadetblue;
+}
+
+
+
+.card{
+    border:black;
+
+
+}
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+  }
+  
+  .dropdown>.dropdown-toggle:active {
+    /*Without this, clicking will make it sticky*/
+      pointer-events: none;
+  }
+  

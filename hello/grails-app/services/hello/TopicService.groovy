@@ -5,7 +5,7 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class TopicService {
 
-    def topicMethod(Map params,username) {
+    def topicMethod(params,username) {
         User user = User.findByUsername(username)
         Topic topic=new Topic(params)
         user.addToTopics(topic)

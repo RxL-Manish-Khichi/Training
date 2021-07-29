@@ -15,8 +15,10 @@ class TopicController {
             String username= session.name
             def v = topicService.topicMethod(params,username)
             if(v){
-                redirect(controller:"dashboard",action: "index")
+
                 flash.success="Topic successfully Added"
+                redirect(controller:"dashboard",action: "index")
+
             }
             else
             {

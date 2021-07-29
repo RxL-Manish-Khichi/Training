@@ -7,6 +7,7 @@ import grails.validation.ValidationException
 class UserController {
     def loginService
     def registerService
+    def userlistService
 
     def index() {
         render view: "index"
@@ -53,11 +54,21 @@ class UserController {
         return
     }
 
-    def logout()
-    {
+    def logout() {
         session.invalidate()
         redirect(controller: "user",action: "index")
     }
+
+    def userlist(){
+        List<User> list=userlistService.listMethod()
+        render(view:"userlist",model:[userl:list])
+    }
+
+    def usereprofile(){
+        render(view: "userprofile")
+    }
+
+
 
 
 

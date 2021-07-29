@@ -161,8 +161,8 @@
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Users</a></li>
+                            <li><a class="dropdown-item" href="/user/usereprofile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/user/userlist">Users</a></li>
                             <li><a class="dropdown-item" href="#">Topics</a></li>
                             <li><a class="dropdown-item" href="#">Posts</a></li>
                             <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
