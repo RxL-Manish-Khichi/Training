@@ -1,7 +1,7 @@
 package hello
 
 
-class DocumentResource{
+class DocumentResource extends Resource{
     String filePath
 
     static belongsTo= [resource:Resource]

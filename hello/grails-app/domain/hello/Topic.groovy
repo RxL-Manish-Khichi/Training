@@ -5,13 +5,13 @@ import linksharing.Enums.VisibilityEnum
 
 class Topic{
     String topicname
-    //  User createdBy
+    User createdBy
     Date dateCreated
     Date lastUpdated
     //  enum visibility //public,private
     VisibilityEnum visibility
     static belongsTo=[createdBy:User]
-    static hasMany = [resources:Resource]
+    static hasMany = [resources:Resource,subscribers:Subscription]
 
 
 

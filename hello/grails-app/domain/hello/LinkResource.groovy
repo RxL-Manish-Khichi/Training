@@ -1,7 +1,7 @@
 package hello
 
 
-class LinkResource{
+class LinkResource extends Resource{
     String url
     static belongsTo = [resource:Resource]
 

@@ -4,7 +4,8 @@ import grails.validation.ValidationException
 
 
 
-class UserController {
+class UserController
+{
     def loginService
     def registerService
     def userlistService
@@ -65,14 +66,20 @@ class UserController {
     }
 
     def usereprofile(){
-        render(view: "userprofile")
+
+        User u1=session.getAttribute("user")
+        render(view: "userprofile",model: [u1:u1])
+    }
+
+  /*  def usercheckhql(){
+        List ll= User.executequery("select firstname,lastname from User ) */
     }
 
 
 
 
 
-    }
+
 
 
 

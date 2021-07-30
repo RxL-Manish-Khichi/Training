@@ -54,7 +54,7 @@
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">u1.firstname
+                           data-bs-toggle="dropdown" aria-expanded="false">${u1.firstname}
                            </a>
                     </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -92,8 +92,8 @@
                         </div>
                         <div class="col">
                             <div class="row">
-                                <h5 class="card-title">u1.firstname u1.lastname</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">@$u1.username</h6>
+                                <h5 class="card-title">${u1.firstname} ${u1.lastname}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@${u1.username}</h6>
                             </div>
                             <div class="row">
                                 <div class="col">
