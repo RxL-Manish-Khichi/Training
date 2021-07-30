@@ -39,9 +39,9 @@
 </head>
 
 <body>
-<h1 style="background-color: darkred">${flash.msgt}</h1>
-<h1 style="background-color: green">${flash.success}</h1>
-<h1 style="background-color:red">${flash.error}</h1>
+<h1 style="background-color: darkkhaki">${flash.msgt}</h1>
+<h1 style="background-color:brown">${flash.success}</h1>
+<h1 style="background-color:lightslategray">${flash.error}</h1>
 <h1>Dashboard</h1>
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -80,18 +80,18 @@
                                     <form action="/topic/topicadd" method="post">
                                         <div class="mb-3">
                                             <label for="formGroupExampleInput" class="form-label">Name *</label>
-                                            <input type="text" name="nname" class="form-control"
+                                            <input type="text" name="topicname" class="form-control"
                                                    id="formGroupExampleInput" placeholder="" required>
                                         </div>
                                         <div class="mb-3">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <label class="input-group-text"
-                                                           for="inputGroupSelect01">Visibility *</label>
+                                                           for="inputGroupSelect01">visibility *</label>
                                                 </div>
-                                                <select class="custom-select" id="inputGroupSelect01">
-                                                    <option selected>Public</option>
-                                                    <option value="1">Private</option>
+                                                <select class="custom-select" name="visibility" id="inputGroupSelect01">
+                                                    <option selected>PUBLIC</option>
+                                                    <option value="1">PRIVATE</option>
 
                                                 </select>
                                             </div>

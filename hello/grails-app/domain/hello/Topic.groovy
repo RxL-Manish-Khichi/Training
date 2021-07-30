@@ -1,7 +1,7 @@
 package hello
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect
-import linksharing.Enums.VisibilityEnum
+import hello.Enums.VisibilityEnum
 
 class Topic{
     String topicname

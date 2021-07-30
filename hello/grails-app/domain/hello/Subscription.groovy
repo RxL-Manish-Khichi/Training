@@ -1,6 +1,6 @@
 package hello
 
-import linksharing.Enums.SeriousnessEnum
+import hello.Enums.SeriousnessEnum
 
 class Subscription{
     //  Topic topic

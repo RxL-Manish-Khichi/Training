@@ -1,4 +1,4 @@
-package linksharing.Enums
+package Enums
 
 enum VisibilityEnum {
     PRIVATE(0),
