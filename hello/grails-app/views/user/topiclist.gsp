@@ -116,27 +116,24 @@
         <table id="example" class="table table-striped" style="width:100%">
             <thead>
             <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>E-mail</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Active</th>
-                <th>Manage</th>
 
+                <th>ID</th>
+                <th>Topic Name</th>
+                <th>Created By</th>
+                <th>Visibilty</th>
+                <th>Manage</th>
             </tr>
             </thead>
             <tbody>
-            <g:each var="User" in="${userl}">
-            <tr>
-                <td>${User.id}</td>
-                <td>${User.username}</td>
-                <td>${User.email}</td>
-                <td>${User.firstname}</td>
-                <td>${User.lastname}</td>
-                <td>Yes</td>
-                <td><a href="" class="activate">Deactivate</a></td>
-            </tr>
+            <g:each var="Topic" in="${topicl}">
+                <tr>
+                    <td>${Topic.id}</td>
+                    <td>${Topic.topicname}</td>
+                    <td>${Topic.createdBy}</td>
+                    <td>${Topic.visibility}</td>
+                    <td><a href="#"> Delete </a></td>
+
+                </tr>
             </g:each>
 
 

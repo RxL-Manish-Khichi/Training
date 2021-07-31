@@ -1,6 +1,6 @@
 package hello
 
-import hello.Enums.SeriousnessEnum
+import Enums.SeriousnessEnum
 
 class Subscription{
     //  Topic topic

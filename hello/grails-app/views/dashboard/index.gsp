@@ -87,7 +87,7 @@
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <label class="input-group-text"
-                                                           for="inputGroupSelect01">visibility *</label>
+                                                           for="inputGroupSelect01">Visibility *</label>
                                                 </div>
                                                 <select class="custom-select" name="visibility" id="inputGroupSelect01">
                                                     <option selected>PUBLIC</option>
@@ -161,9 +161,9 @@
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/user/usereprofile">Profile</a></li>
+                            <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
                             <li><a class="dropdown-item" href="/user/userlist">Users</a></li>
-                            <li><a class="dropdown-item" href="#">Topics</a></li>
+                            <li><a class="dropdown-item" href="/user/toplist">Topics</a></li>
                             <li><a class="dropdown-item" href="#">Posts</a></li>
                             <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
 

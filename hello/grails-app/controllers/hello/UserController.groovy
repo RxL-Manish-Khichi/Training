@@ -9,6 +9,7 @@ class UserController
     def loginService
     def registerService
     def userlistService
+    def topiclistService
 
     def index() {
         render view: "index"
@@ -65,10 +66,19 @@ class UserController
         render(view:"userlist",model:[userl:list])
     }
 
-    def usereprofile(){
+  /*  def usereprofile(){
 
         User u1=session.getAttribute("user")
         render(view: "userprofile",model: [u1:u1])
+    } */
+
+    def toplist(){
+        List<Topic> list=topiclistService.tlistMethod()
+        render(view:"topiclist",model:[topicl:list])
+    }
+
+    def editprof(){
+        render(view: "editprofile")
     }
 
   /*  def usercheckhql(){

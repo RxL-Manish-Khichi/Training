@@ -1,11 +1,11 @@
 package hello
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect
-import hello.Enums.VisibilityEnum
+import Enums.VisibilityEnum
 
 class Topic{
     String topicname
-    User createdBy
+    // User createdBy
     Date dateCreated
     Date lastUpdated
     //  enum visibility //public,private
