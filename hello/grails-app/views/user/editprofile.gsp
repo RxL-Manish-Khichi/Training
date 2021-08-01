@@ -61,12 +61,12 @@
                                 <path
                                         d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
                                 <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
-                            </svg></a>
+                            </svg>${session.user.firstname}</a>
                     </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Profile</a></li>
 
-                            <li><a class="dropdown-item" href="#">Logout</a></li>
+                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
 
 
                         </ul>
@@ -88,31 +88,30 @@
         <div class="col-md-6">
             <div class="row mt-2"> </div>
             <div class="row mt-2"> </div>
-            <div class="card" style="width: 25rem;">
+            <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col">
+                        <div class="col-auto">
                             <figure class="figure">
-                                <img src="https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png"
-                                     id="pi1" class="figure-img img-fluid rounded" alt="...">
+                                <asset:image src="/photof/${session.name}.png" />
                             </figure>
                         </div>
-                        <div class="col-auto">
+                        <div class="col">
                             <div class="row">
-                                <h5 class="card-title">Uday Pratap Singh</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">@Uday</h6>
+                                <h5 class="card-title">${session.user.firstname} ${session.user.lastname}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@${session.user.username}</h6>
                             </div>
                             <div class="row">
                                 <div class="col-auto">
 
 
                                     <h9 class="text-muted">Subscriptions</h9>
-                                    <a href="#" class="card-link">30</a>
+                                    <a href="#" class="card-link">${subscount}</a>
 
                                 </div>
                                 <div class="col">
                                     <h9 class="text-muted">Topics</h9>
-                                    <a href="#" class="card-link">30</a>
+                                    <a href="#" class="card-link">${topcount}</a>
 
                                 </div>
                             </div>

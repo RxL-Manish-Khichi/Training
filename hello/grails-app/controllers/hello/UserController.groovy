@@ -78,7 +78,10 @@ class UserController
     }
 
     def editprof(){
-        render(view: "editprofile")
+        Integer topcount=topiclistService.topiccountMethod(session.user.username)
+        Integer subscount=topiclistService.subscribecountMethod(session.user.username)
+
+        render(view: "editprofile",model:[topcount:topcount,subscount:subscount])
     }
 
   /*  def usercheckhql(){

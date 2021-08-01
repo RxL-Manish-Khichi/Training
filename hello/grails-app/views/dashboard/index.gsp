@@ -87,11 +87,12 @@
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <label class="input-group-text"
-                                                           for="inputGroupSelect01">Visibility *</label>
+                                                           for="inputGroupSelect01">visibility *</label>
                                                 </div>
                                                 <select class="custom-select" name="visibility" id="inputGroupSelect01">
                                                     <option selected>PUBLIC</option>
                                                     <option value="1">PRIVATE</option>
+                                                  <!--  <option value="1">PUBLIC</option> -->
 
                                                 </select>
                                             </div>
@@ -157,7 +158,7 @@
 
 
                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">${u1.firstname}
+                           data-bs-toggle="dropdown" aria-expanded="false">${session.user.firstname}
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -201,20 +202,20 @@
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    <h5 class="card-title">${u1.firstname} ${u1.lastname}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">@${u1.username}</h6>
+                                    <h5 class="card-title">${session.user.firstname} ${session.user.lastname}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">@${session.user.username}</h6>
                                 </div>
                                 <div class="row">
                                     <div class="col-auto">
 
 
                                         <h9 class="text-muted">Subscriptions</h9>
-                                        <a href="#" class="card-link">30</a>
+                                        <a href="#" class="card-link">${subscount}</a>
 
                                     </div>
                                     <div class="col">
                                         <h9 class="text-muted">Topics</h9>
-                                        <a href="#" class="card-link">30</a>
+                                        <a href="#" class="card-link">${topcount}</a>
 
                                     </div>
                                 </div>
