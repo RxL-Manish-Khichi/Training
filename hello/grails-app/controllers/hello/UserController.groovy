@@ -10,6 +10,8 @@ class UserController
     def registerService
     def userlistService
     def topiclistService
+    def topicService
+    def updateService
 
     def index() {
         render view: "index"
@@ -78,11 +80,104 @@ class UserController
     }
 
     def editprof(){
+      //User u=session.getAttribute("user")
         Integer topcount=topiclistService.topiccountMethod(session.user.username)
         Integer subscount=topiclistService.subscribecountMethod(session.user.username)
 
         render(view: "editprofile",model:[topcount:topcount,subscount:subscount])
     }
+
+   def updatePassword(){
+        if(params.password==params.confirmpassword){
+            User u=session.getAttribute("user")
+            User u1=User.get(u.id)
+            u1.firstname=u.firstname
+            u1.lastname=u.lastname
+            u1.username=u.username
+            u1.email=u.email
+            u1.photo=u.photo
+            u1.password= params.password
+            u1.confirmpassword=params.confirmpassword
+            // println u1.cofirmpassword
+            try{
+            u1.save(flush:true)
+            session.setAttribute("user",u1)
+                flash.success="Password updated successfully"
+                redirect(controller: "user",action: "editprof")
+        }catch(Exception e){
+            flash.error = "Failing in updation "
+            return
+            }
+        }
+
+    }
+
+
+    def updateProfile()
+    {
+        User u=session.getAttribute("user")
+        User u1=User.get(u.id)
+        u1.firstname=params.firstname
+        u1.lastname=params.lastname
+        u1.username=params.username
+        u1.password=u1.confirmpassword
+        u1.email=u1.email
+        def file = request.getFile('image')
+        if (file && !file.empty) {
+            File photo = new File("/home/rxlogix/hello/grails-app/assets/images/photof/${params.username}.png")
+            file.transferTo(photo);
+
+            u1.photo= "/photof/${params.username}.png"
+        }
+        u1.confirmpassword=u1.confirmpassword
+        try{
+            u1.save(flush:true)
+            flash.success= 'Profile updated successfully'
+            session.setAttribute("user",u1)
+            redirect(controller: "user",action: "editprof")
+
+        }catch(Exception e){
+            flash.error="Password updated successfully"
+            return
+
+        }
+
+
+    }
+
+    def posts(){
+        render(view: "posts")
+    }
+
+/*    def updateProfile(){
+        String name= session.user.username
+        def u1 = updateService.updateProfile(params,request,name)
+        if(u1){
+            flash.success="Profile Updated Successfully"
+            session.getAttribute("user")
+            redirect(controller: "user",action:"editprof")
+        }
+        else{
+            flash.error ="Error in updation- Try Again"
+            return
+        }
+    }
+    */
+
+   /*  def updatePassword(){
+        String name = session.user.username
+        if(params.password==params.confirmpassword){
+            def u = updateService.updatePassword(params,name)
+            if(u){
+                flash.success="Password Successfully Updated"
+                redirect(controller:"user",action: "editprof")
+            }
+            else{
+                flash.error="Error in updating password! try again"
+                return
+            }
+        }
+    } */
 
   /*  def usercheckhql(){
         List ll= User.executequery("select firstname,lastname from User ) */

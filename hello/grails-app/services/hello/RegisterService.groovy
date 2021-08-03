@@ -11,7 +11,7 @@ class RegisterService {
         User ru = new User(params)
 
         def file = request.getFile('image')
-        def name = file.getOriginalFilename()
+       // def name = file.getOriginalFilename()
       //  println "file is "+name
         if (file && !file.empty) {
             File file2 = new File("/home/rxlogix/hello/grails-app/assets/images/photof/${params.username}.png")

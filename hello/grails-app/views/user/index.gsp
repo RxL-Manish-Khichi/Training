@@ -20,9 +20,9 @@
 <h1 style="background-color:red">${flash.msg2}</h1>
 <h1 style="background-color:red">${flash.msg3}</h1>
 
-<div class="row g-2">
+<!--<div class="row g-2">
     <h1 id="hm1">Homepage</h1>
-</div>
+</div>-->
 <div class="container-fluid">
 <div class="row g-2">
     <nav class="navbar navbar-light bg-light" id="navii">

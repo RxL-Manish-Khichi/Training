@@ -1,5 +1,7 @@
 package Enums
 
+
+
 enum SeriousnessEnum {
 
     CASUAL(0),

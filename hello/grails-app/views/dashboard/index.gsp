@@ -21,8 +21,8 @@
     <title>Dashboard Link sharing app</title>
     <style>
     #fif {
-        width: 2cm;
-        height: 2cm;
+        width: 100px;
+        height: 100px;
     }
 
     .divider {
@@ -42,7 +42,7 @@
 <h1 style="background-color: darkkhaki">${flash.msgt}</h1>
 <h1 style="background-color:brown">${flash.success}</h1>
 <h1 style="background-color:lightslategray">${flash.error}</h1>
-<h1>Dashboard</h1>
+<!--<h1>Dashboard</h1>-->
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -90,8 +90,8 @@
                                                            for="inputGroupSelect01">visibility *</label>
                                                 </div>
                                                 <select class="custom-select" name="visibility" id="inputGroupSelect01">
-                                                    <option selected>PUBLIC</option>
-                                                    <option value="1">PRIVATE</option>
+                                                    <option >PUBLIC</option>
+                                                    <option>PRIVATE</option>
                                                   <!--  <option value="1">PUBLIC</option> -->
 
                                                 </select>
@@ -165,7 +165,7 @@
                             <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
                             <li><a class="dropdown-item" href="/user/userlist">Users</a></li>
                             <li><a class="dropdown-item" href="/user/toplist">Topics</a></li>
-                            <li><a class="dropdown-item" href="#">Posts</a></li>
+                            <li><a class="dropdown-item" href="/user/posts">Posts</a></li>
                             <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
 
 
@@ -193,8 +193,8 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-auto">
-                                <figure class="figure">
-                                    <asset:image src="/photof/${session.name}.png" />
+                                <figure class="figure" >
+                                    <asset:image src="/photof/${session.name}.png" id="fif"/>
 
                                     <!--     <img src="https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png"
                                             id="pi1" class="figure-img img-fluid rounded" alt="...">-->
@@ -249,16 +249,19 @@
                 </div>
 
                 <div class="card-body">
+
                     <div class="row">
                         <div class="col-auto">
                             <figure class="figure" id="fif">
                                 <img src="https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png"
                                      id="pi1" class="figure-img img-fluid rounded" alt="...">
+
+
                             </figure>
                         </div>
                         <div class="col">
                             <div class="row">
-                                <h5 class="card-title"><a href="#" class="card-link">Grails</a></h5>
+                                <h5 class="card-title"><a href="#" class="card-link">Topic Name</a></h5>
 
                             </div>
                             <div class="row">
@@ -291,10 +294,10 @@
                     <div class="row">
                         <div class="col">
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>select</option>
-                                <option value="1">Serious</option>
-                                <option value="2">Very Serious</option>
-                                <option value="3">Casual</option>
+
+                                <option>Serious</option>
+                                <option>Very Serious</option>
+                                <option>Casual</option>
                             </select>
                         </div>
                         <div class="col">
@@ -476,47 +479,136 @@
                     Trending Topics
                 </div>
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-auto">
-                            <figure class="figure" id="fif">
-                                <img src="https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png"
-                                     id="pi1" class="figure-img img-fluid rounded" alt="...">
-                            </figure>
-                        </div>
-                        <div class="col">
-                            <div class="row">
-                                <h5 class="card-title"><a href="#" class="card-link">Grails</a></h5>
+                    <g:each in="${trending}" var="it">
+                        <div class="row">
+                            <div class="col-auto">
+                                <figure class="figure">
+                                    <asset:image src="${it.createdBy.photo}" id="fif"/>
+                                </figure>
+                            </div>
+                            <div class="col-auto">
+                                <div class="row">
+                                    <h5 class="card-title"><a href="#" class="card-link">${it.topicname}</a></h5>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-auto">
+                                        <h9 class="text-muted">@${it.createdBy.username}</h9>
+                                        <g:if test="${it.subscribers.user.email.contains(session.user.email)}">
+                                            <a controller="Subscription" action="unsubscribe" params="[it.id]" href="#" class="card-link" >Unsubscribed</a>
+                                        </g:if>
+                                        <g:else>
+                                            <a controller="Subscription" action="subscribe" params="[it.id]" href="#" class="card-link" >Subscribed</a>
+
+                                        </g:else>
+
+
+                                    </div>
+                                    <g:if test="${it.createdBy.username.equals(session.user.username)}"></g:if>
+
+                                    <div class="col-auto">
+
+
+                                        <h9 class="text-muted">Subscriptions</h9>
+                                        <a href="#" class="card-link">30</a>
+
+                                    </div>
+
+                                    <div class="col">
+                                        <h9 class="text-muted">Topics</h9>
+                                        <a href="#" class="card-link">30</a>
+
+                                    </div>
+
+
+
+                                </div>
+
 
                             </div>
-                            <div class="row">
-                                <div class="col">
 
+                        </div>
+                        <div class="row">
+                            <div class="col-auto">
+                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
 
-                                    <h9 class="text-muted">Subscriptions</h9>
-                                    <a href="#" class="card-link">30</a>
+                                    <option >Serious</option>
+                                    <option >Very Serious</option>
+                                    <option >Casual</option>
+                                </select>
+                            </div>
 
-                                </div>
+                            <div class="col-auto">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-envelope" viewBox="0 0 16 16">
+                                    <path
+                                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+                                </svg></a>
 
-                                <div class="col">
-                                    <h9 class="text-muted">Topics</h9>
-                                    <a href="#" class="card-link">30</a>
-
-                                </div>
-
-                                <div class="col">
-                                    <h9 class="text-muted">@Uday</h9>
-                                    <a href="#" class="card-link">Subscribed</a>
-
-                                </div>
 
                             </div>
+                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Send Invitation</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form>
+                                                <div class="mb-3">
+                                                    <label for="exampleInputEmail1" class="form-label">Email
+                                                    address *</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                                           aria-describedby="emailHelp">
+
+                                                </div>
+                                                <div class="mb-3">
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text"
+                                                                   for="inputGroupSelect01">Topic *</label>
+                                                        </div>
+                                                        <select class="custom-select" id="inputGroupSelect01">
+                                                            <option selected>Topic</option>
+                                                            <option value="1">One</option>
+                                                            <option value="2">Two</option>
+                                                            <option value="3">Three</option>
+                                                        </select>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </form>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" class="btn btn-primary">Invite</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
 
 
                         </div>
 
-                    </div>
+                        <div class="divider"></div>
 
 
+                    </g:each>
 
 
                 </div>

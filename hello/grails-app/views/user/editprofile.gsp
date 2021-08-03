@@ -13,8 +13,8 @@
     <title>Edit Profile Link sharing app</title>
     <style>
     #fif {
-        width: 2cm;
-        height: 2cm;
+        width: 100px;
+        height: 100px;
     }
 
     .divider {
@@ -38,6 +38,9 @@
 </head>
 
 <body>
+
+<h1 style="background-color:brown">${flash.success}</h1>
+<h1 style="background-color:lightslategray">${flash.error}</h1>
 <h1>Edit Profile</h1>
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -93,7 +96,7 @@
                     <div class="row">
                         <div class="col-auto">
                             <figure class="figure">
-                                <asset:image src="/photof/${session.name}.png" />
+                                <asset:image src="/photof/${session.name}.png" id="fif"/>
                             </figure>
                         </div>
                         <div class="col">
@@ -260,7 +263,7 @@
                 <div class="card" id="l3">
                     <h5 class="card-header">Profile</h5>
                     <div class="card-body">
-                        <form action="/user/ruser" method="post">
+                        <form  controller="user" action="updateProfile" enctype="multipart/form-data" method="post">
                             <div class="mb-3">
                                 <label for="formGroupExampleInput" class="form-label">First name *</label>
                                 <input type="text" name="firstname" class="form-control" id="formGroupExampleInput" placeholder=""
@@ -284,7 +287,7 @@
 
                             <div class="mb-3">
                                 <label for="formFileSm" class="form-label">Photo</label>
-                                <input class="form-control form-control-sm" name="photo" id="formFileSm" type="file">
+                                <input class="form-control form-control-sm" name="image" id="formFileSm" type="file">
                             </div>
                             <button type="submit" name="register" class="btn btn-primary" id="l1">Update</button>
                         </form>
@@ -298,7 +301,7 @@
                 <div class="card" id="l2">
                     <h5 class="card-header">Change Password</h5>
                     <div class="card-body">
-                        <form action="/user/loger" method="POST">
+                        <form controller="user" action="updatePassword" method="post">
                             <div class="mb-3">
                                 <label for="exampleInputPassword1" class="form-label">Password *</label>
                                 <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>

@@ -1,5 +1,6 @@
 package Enums
 
+
 enum VisibilityEnum {
     PRIVATE(0),
 

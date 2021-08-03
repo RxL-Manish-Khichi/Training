@@ -129,7 +129,7 @@
                 <tr>
                     <td>${Topic.id}</td>
                     <td>${Topic.topicname}</td>
-                    <td>${Topic.createdBy}</td>
+                    <td>${Topic.createdBy.username}</td>
                     <td>${Topic.visibility}</td>
                     <td><a href="#"> Delete </a></td>
 

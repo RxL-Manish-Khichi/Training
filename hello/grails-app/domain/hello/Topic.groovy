@@ -1,6 +1,6 @@
 package hello
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect
+
 import Enums.VisibilityEnum
 
 class Topic{

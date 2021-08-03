@@ -6,7 +6,7 @@ class Subscription{
     //  Topic topic
     //  User user
    // enum seriousness  //serious,very serious,casual
-    SeriousnessEnum serious
+    SeriousnessEnum seriousness
     Date dateCreated
     static belongsTo=[topic:Topic,user:User]
 

@@ -1,5 +1,7 @@
 package hello
 
+import Enums.VisibilityEnum
+
 import grails.gorm.transactions.Transactional
 
 @Transactional
@@ -11,6 +13,7 @@ class TopiclistService {
 
     }
 
+
     def topiccountMethod(String name){
         Integer tc = User.findByUsername(name).topics.size()
         return tc
@@ -20,4 +23,12 @@ class TopiclistService {
         Integer sc= User.findByUsername(name).subscriptions.size()
         return sc
     }
+
+    def trendTopicMethod(){
+        List<Topic> trendList = Topic.createCriteria().list(max:5){
+            eq('visibility',VisibilityEnum.PUBLIC)
+        }
+        return trendList
+    }
+
 }
