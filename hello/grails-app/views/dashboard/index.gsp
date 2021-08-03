@@ -119,16 +119,70 @@
                     </div>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="top"
-                           title="Send Invitation"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-toggle="tooltip" data-bs-placement="top"
+                           title="Send Invitation" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
                             <path
                                     d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
                         </svg></a>
                     </li>
+                    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Send Invitation</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="" method="post">
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Email address *</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <label class="input-group-text"
+                                                           for="inputGroupSelect01">Topic *</label>
+                                                </div>
+
+                                                    <select class="custom-select" name="" id="inputGroupSelect01">
+                                                        <option >Topic 1</option>
+                                                        <option>Topic 2</option>
+                                                        <!--  <option value="1">PUBLIC</option> -->
+
+                                                    </select>
+
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <button type="submit" class="btn btn-primary" id="l1">Invite</button>
+                                        </div>
+
+
+
+                                    </form>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                    <!--  <button type="button" class="btn btn-primary" >Save</button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#" data-bs-toggle="tooltip" data-bs-placement="top"
-                           title="Create Resource"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal4" data-bs-toggle="tooltip" data-bs-placement="top"
+                           title="share link"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                         fill="currentColor" class="bi bi-tag" viewBox="0 0 16 16">
                             <path
                                     d="M6 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-1 0a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0z" />
@@ -136,14 +190,129 @@
                                     d="M2 1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 1 6.586V2a1 1 0 0 1 1-1zm0 5.586 7 7L13.586 9l-7-7H2v4.586z" />
                         </svg></a>
                     </li>
+                    <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Share Link</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="" method="post">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text" id="basic-addon3">Link *</span>
+                                            <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">Description *</span>
+                                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <label class="input-group-text"
+                                                           for="inputGroupSelect01">Topic *</label>
+                                                </div>
+
+                                                <select class="custom-select" name="" id="inputGroupSelect01">
+                                                    <option >Topic 1</option>
+                                                    <option>Topic 2</option>
+                                                    <!--  <option value="1">PUBLIC</option> -->
+
+                                                </select>
+
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <button type="submit" class="btn btn-primary" id="l1">Share</button>
+                                        </div>
+
+
+
+                                    </form>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                    <!--  <button type="button" class="btn btn-primary" >Save</button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal5" data-bs-toggle="tooltip" data-bs-placement="top"
+                           title="Share Document"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                           fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                             <path
                                     d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
                         </svg></a>
                     </li>
+                    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Share Document</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="" method="post">
+                                        <form>
+                                            <div class="form-group mb-3">
+                                                <label for="exampleFormControlFile1">Document *</label>
+                                                <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                                            </div>
+                                        </form>
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">Description *</span>
+                                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <label class="input-group-text"
+                                                           for="inputGroupSelect01">Topic *</label>
+                                                </div>
+
+                                                <select class="custom-select" name="" id="inputGroupSelect01">
+                                                    <option >Topic 1</option>
+                                                    <option>Topic 2</option>
+                                                    <!--  <option value="1">PUBLIC</option> -->
+
+                                                </select>
+
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="mb-3">
+                                            <button type="submit" class="btn btn-primary" id="l1">Share</button>
+                                        </div>
+
+
+
+                                    </form>
+
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cancel</button>
+                                    <!--  <button type="button" class="btn btn-primary" >Save</button>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <li class="nav-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              class="bi bi-award" viewBox="0 0 16 16">
@@ -478,140 +647,269 @@
                 <div class="card-header">
                     Trending Topics
                 </div>
-                <div class="card-body">
-                    <g:each in="${trending}" var="it">
-                        <div class="row">
-                            <div class="col-auto">
-                                <figure class="figure">
-                                    <asset:image src="${it.createdBy.photo}" id="fif"/>
-                                </figure>
-                            </div>
-                            <div class="col-auto">
-                                <div class="row">
-                                    <h5 class="card-title"><a href="#" class="card-link">${it.topicname}</a></h5>
+                <g:each in="${trending}" var="it">
+                    <g:if test="${it.createdBy.username.equals(session.user.username)}">
+                        <div class="card-body">
 
+                            <div class="row">
+                                <div class="col-auto">
+                                    <figure class="figure">
+                                        <asset:image src="${it.createdBy.photo}" id="fif"/>
+                                    </figure>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <h9 class="text-muted">@${it.createdBy.username}</h9>
-                                        <g:if test="${it.subscribers.user.email.contains(session.user.email)}">
-                                            <a controller="Subscription" action="unsubscribe" params="[it.id]" href="#" class="card-link" >Unsubscribed</a>
-                                        </g:if>
-                                        <g:else>
-                                            <a controller="Subscription" action="subscribe" params="[it.id]" href="#" class="card-link" >Subscribed</a>
-
-                                        </g:else>
-
-
-                                    </div>
-                                    <g:if test="${it.createdBy.username.equals(session.user.username)}"></g:if>
-
-                                    <div class="col-auto">
-
-
-                                        <h9 class="text-muted">Subscriptions</h9>
-                                        <a href="#" class="card-link">30</a>
+                                <div class="col-auto">
+                                    <div class="row">
+                                        <h5 class="card-title"><a href="#" class="card-link">${it.topicname}</a></h5>
 
                                     </div>
 
-                                    <div class="col">
-                                        <h9 class="text-muted">Topics</h9>
-                                        <a href="#" class="card-link">30</a>
-
-                                    </div>
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <h9 class="text-muted">@${it.createdBy.username}</h9>
 
 
-
-                                </div>
-
-
-                            </div>
-
-                        </div>
-                        <div class="row">
-                            <div class="col-auto">
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-
-                                    <option >Serious</option>
-                                    <option >Very Serious</option>
-                                    <option >Casual</option>
-                                </select>
-                            </div>
-
-                            <div class="col-auto">
-                                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                        class="bi bi-envelope" viewBox="0 0 16 16">
-                                    <path
-                                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
-                                </svg></a>
-
-
-                            </div>
-                            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                 aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Send Invitation</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
                                         </div>
-                                        <div class="modal-body">
-                                            <form>
-                                                <div class="mb-3">
-                                                    <label for="exampleInputEmail1" class="form-label">Email
-                                                    address *</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1"
-                                                           aria-describedby="emailHelp">
 
-                                                </div>
-                                                <div class="mb-3">
-                                                    <div class="input-group mb-3">
-                                                        <div class="input-group-prepend">
-                                                            <label class="input-group-text"
-                                                                   for="inputGroupSelect01">Topic *</label>
+                                        <div class="col-auto">
+
+
+                                            <h9 class="text-muted">Subscriptions</h9>
+                                            <a href="#" class="card-link">30</a>
+
+                                        </div>
+
+                                        <div class="col">
+                                            <h9 class="text-muted">Topics</h9>
+                                            <a href="#" class="card-link">30</a>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+
+                                        <option >Serious</option>
+                                        <option >Very Serious</option>
+                                        <option >Casual</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-auto">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-envelope" viewBox="0 0 16 16">
+                                        <path
+                                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+                                    </svg></a>
+
+
+                                </div>
+                                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Send Invitation</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Email
+                                                        address *</label>
+                                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                                               aria-describedby="emailHelp">
+
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <label class="input-group-text"
+                                                                       for="inputGroupSelect01">Topic *</label>
+                                                            </div>
+                                                            <select class="custom-select" id="inputGroupSelect01">
+                                                                <option selected>Topic</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
                                                         </div>
-                                                        <select class="custom-select" id="inputGroupSelect01">
-                                                            <option selected>Topic</option>
-                                                            <option value="1">One</option>
-                                                            <option value="2">Two</option>
-                                                            <option value="3">Three</option>
-                                                        </select>
+
+
                                                     </div>
 
-
-                                                </div>
-
-                                            </form>
+                                                </form>
 
 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn btn-primary">Invite</button>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-primary">Invite</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+
+
+
+
+
+
                             </div>
 
-
-
-
-
-
-
+                            <div class="divider"></div>
                         </div>
 
-                        <div class="divider"></div>
+                    </g:if>
+                    <g:else>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-auto">
+                                    <figure class="figure">
+                                        <asset:image src="${it.createdBy.photo}" id="fif"/>
+                                    </figure>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="row">
+                                        <h5 class="card-title"><a href="#" class="card-link">${it.topicname}</a></h5>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <h9 class="text-muted">@${it.createdBy.username}</h9>
+                                            <g:if test="${it.subscribers.user.email.contains(session.user.email)}">
+                                                <a controller="Subscription" action="unsubscribe" params="[it.id]" href="#" class="card-link" >Unsubscribed</a>
+                                            </g:if>
+                                            <g:else>
+                                                <a controller="Subscription" action="subscribe" params="[it.id]" href="#" class="card-link" >Subscribed</a>
+
+                                            </g:else>
+
+
+                                        </div>
+
+                                        <div class="col-auto">
+
+
+                                            <h9 class="text-muted">Subscriptions</h9>
+                                            <a href="#" class="card-link">30</a>
+
+                                        </div>
+
+                                        <div class="col">
+                                            <h9 class="text-muted">Topics</h9>
+                                            <a href="#" class="card-link">30</a>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+
+                                        <option >Serious</option>
+                                        <option >Very Serious</option>
+                                        <option >Casual</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-auto">
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal1"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                            class="bi bi-envelope" viewBox="0 0 16 16">
+                                        <path
+                                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+                                    </svg></a>
+
+
+                                </div>
+                                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Send Invitation</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <label for="exampleInputEmail1" class="form-label">Email
+                                                        address *</label>
+                                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                                               aria-describedby="emailHelp">
+
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <div class="input-group mb-3">
+                                                            <div class="input-group-prepend">
+                                                                <label class="input-group-text"
+                                                                       for="inputGroupSelect01">Topic *</label>
+                                                            </div>
+                                                            <select class="custom-select" id="inputGroupSelect01">
+                                                                <option selected>Topic</option>
+                                                                <option value="1">One</option>
+                                                                <option value="2">Two</option>
+                                                                <option value="3">Three</option>
+                                                            </select>
+                                                        </div>
+
+
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cancel</button>
+                                                <button type="button" class="btn btn-primary">Invite</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                            </div>
+
+                            <div class="divider"></div>
+                        </div>
+                    </g:else>
+
+
 
 
                     </g:each>
 
 
-                </div>
+
                 <div class="divider"></div>
                 <div class="card-body">
                     <div class="row">
