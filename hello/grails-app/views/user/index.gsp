@@ -14,11 +14,11 @@
     <title>Link Sharing</title>
 </head>
 <body id="b11">
-<h1 style="background-color:green">${flash.success}</h1>
-<h1 style="background-color:red">${flash.error}</h1>
-<h1 style="background-color:green">${flash.msg1}</h1>
-<h1 style="background-color:red">${flash.msg2}</h1>
-<h1 style="background-color:red">${flash.msg3}</h1>
+<h3 style="background-color:green;text-align:center">${flash.success}</h1>
+<h3 style="background-color:red">${flash.error}</h3>
+<h3 style="background-color:green">${flash.msg1}</h3>
+<h3 style="background-color:#F5F5F5">${flash.msg2}</h3>
+<h3 style="background-color:red">${flash.msg3}</h3>
 
 <!--<div class="row g-2">
     <h1 id="hm1">Homepage</h1>

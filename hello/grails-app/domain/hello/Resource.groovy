@@ -28,3 +28,11 @@ class Resource{
     }
 }
 
+class LinkResource extends Resource{
+    String url
+
+}
+
+class DocumentResource extends Resource{
+    String filePath
+}
