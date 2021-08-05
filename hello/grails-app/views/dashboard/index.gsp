@@ -19,6 +19,11 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="dash.css" rel="stylesheet">
     <title>Dashboard Link sharing app</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
     <style>
     #fif {
         width: 100px;
@@ -36,6 +41,31 @@
         background-color: yellowgreen;
     }
     </style>
+
+    <script type="text/javascript">
+        $( document ).ready( function() {
+            $( "#save" ).click(function (){
+                $.ajax( {
+                    url: "${createLink(controller:'topic',action:'topicadd')}",
+                    type: "post",
+                    data:  $( '#topicForm' ).serialize(),
+                    success: function() {
+                        $("#carddiv").load(" #carddiv")
+                        $('#checkmodel').modal('hide');
+
+                    },
+                    error: function(xhr) {
+
+                    }
+                } );
+            });
+        });
+
+    </script>
+
+
+
+
 </head>
 
 <body>
@@ -57,7 +87,8 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal2"
-                           data-bs-toggle="tooltip" data-bs-placement="top" title="Create Topic"><svg
+                           data-bs-toggle="tooltip" data-bs-placement="top" title="Create Topic">
+                            <svg
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-file-text" viewBox="0 0 16 16">
                             <path
@@ -67,9 +98,10 @@
                         </svg>
                         </a>
                     </li>
+                    <div id="chechmodel">
                     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog" >
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">Create Topic</h5>
@@ -77,19 +109,19 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/topic/topicadd" method="post">
+                                    <g:form id="topicForm" name="topicForm">
                                         <div class="mb-3">
-                                            <label for="formGroupExampleInput" class="form-label">Name *</label>
+                                            <label for="topicnamec" class="form-label">Name *</label>
                                             <input type="text" name="topicname" class="form-control"
-                                                   id="formGroupExampleInput" placeholder="" required>
+                                                   id="topicnamec" placeholder="" required>
                                         </div>
                                         <div class="mb-3">
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
                                                     <label class="input-group-text"
-                                                           for="inputGroupSelect01">visibility *</label>
+                                                           for="svisible">visibility *</label>
                                                 </div>
-                                                <select class="custom-select" name="visibility" id="inputGroupSelect01">
+                                                <select class="custom-select" name="visibility" id="svisible">
                                                     <option >PUBLIC</option>
                                                     <option>PRIVATE</option>
                                                   <!--  <option value="1">PUBLIC</option> -->
@@ -99,13 +131,14 @@
 
 
                                         </div>
-                                        <div class="mb-3">
-                                            <button type="submit" class="btn btn-primary" id="l1">Save</button>
-                                        </div>
 
 
 
-                                    </form>
+
+                                    </g:form>
+                                    <div class="mb-3">
+                                        <button type="submit" id="save" class="btn btn-primary" >Save</button>
+                                    </div>
 
 
                                 </div>
@@ -117,7 +150,7 @@
                             </div>
                         </div>
                     </div>
-
+                    </div>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal3" data-bs-toggle="tooltip" data-bs-placement="top"
                            title="Send Invitation" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -358,7 +391,7 @@
             <div class="row mt-2"> </div>
             <div class="row mt-2"> </div>
             <div class="container-fluid">
-                <div class="card">
+                <div class="card" id="carddiv">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-auto">
@@ -416,24 +449,30 @@
                     </div>
 
                 </div>
+             <g:each in="${subList}" var="it">
+                 <g:if test="${it.topic.createdBy.username.equals(session.user.username)}">
 
                 <div class="card-body">
 
                     <div class="row">
                         <div class="col-auto">
-                            <figure class="figure" id="fif">
-                                <img src="https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png"
-                                     id="pi1" class="figure-img img-fluid rounded" alt="...">
+                            <figure class="figure">
+                                <asset:image src="${it.topic.createdBy.photo}" id="fif"/>
 
 
                             </figure>
                         </div>
                         <div class="col">
                             <div class="row">
-                                <h5 class="card-title"><a href="#" class="card-link">Topic Name</a></h5>
+                                <h5 class="card-title"><a href="#" class="card-link">${it.topic.topicname}</a></h5>
 
                             </div>
                             <div class="row">
+                                <div class="col">
+                                    <h9 class="text-muted">@${it.topic.createdBy.username}</h9>
+
+
+                                </div>
                                 <div class="col">
 
 
@@ -448,11 +487,7 @@
 
                                 </div>
 
-                                <div class="col">
-                                    <h9 class="text-muted">@Uday</h9>
-                                    <a href="#" class="card-link">Unsubscribed</a>
 
-                                </div>
 
                             </div>
 
@@ -471,9 +506,9 @@
                         </div>
                         <div class="col">
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>select</option>
-                                <option value="1">Pubic</option>
-                                <option value="2">Private</option>
+
+                                <option>Pubic</option>
+                                <option>Private</option>
 
                             </select>
                         </div>
@@ -516,6 +551,112 @@
 
 
                 </div>
+                 </g:if>
+                 <g:else>
+                     <div class="card-body">
+
+                         <div class="row">
+                             <div class="col-auto">
+                                 <figure class="figure">
+                                     <asset:image src="${it.topic.createdBy.photo}" id="fif"/>
+
+
+                                 </figure>
+                             </div>
+                             <div class="col">
+                                 <div class="row">
+                                     <h5 class="card-title"><a href="#" class="card-link">${it.topic.topicname}</a></h5>
+
+                                 </div>
+                                 <div class="row">
+                                     <div class="col">
+                                         <h9 class="text-muted">@${it.topic.createdBy.username}</h9>
+                                         <g:link controller="subscription" action="unsubscribe" params="[id:it.id]">Unsubscribe</g:link>
+
+
+                                     </div>
+                                     <div class="col">
+
+
+                                         <h9 class="text-muted">Subscriptions</h9>
+                                         <a href="#" class="card-link">30</a>
+
+                                     </div>
+
+                                     <div class="col">
+                                         <h9 class="text-muted">Topics</h9>
+                                         <a href="#" class="card-link">30</a>
+
+                                     </div>
+
+
+
+                                 </div>
+
+
+                             </div>
+
+                         </div>
+                         <div class="row">
+                             <div class="col">
+                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+
+                                     <option>Serious</option>
+                                     <option>Very Serious</option>
+                                     <option>Casual</option>
+                                 </select>
+                             </div>
+                             <div class="col">
+                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+
+                                     <option>Pubic</option>
+                                     <option>Private</option>
+
+                                 </select>
+                             </div>
+                             <div class="col-auto">
+                                 <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                   height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                     <path
+                                             d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+                                 </svg></a>
+
+
+                             </div>
+                             <div class="col-auto">
+                                 <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                   height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                     <path
+                                             d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                     <path
+                                             d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                 </svg></a>
+
+
+                             </div>
+                             <div class="col">
+                                 <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                   height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                     <path
+                                             d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                     <path fill-rule="evenodd"
+                                           d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                                 </svg></a>
+
+
+                             </div>
+
+
+
+
+                         </div>
+
+
+                     </div>
+
+                 </g:else>
+
+            </g:each>
                 <div class="divider"></div>
                 <div class="card-body">
                     <div class="row">
@@ -1124,6 +1265,7 @@
         myInput.focus()
     })
 </script>
+
 <script>
     var myModal = document.getElementById('myModal')
     var myInput = document.getElementById('myInput')
@@ -1132,6 +1274,7 @@
         myInput.focus()
     })
 </script>
+
 <script>
     var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {

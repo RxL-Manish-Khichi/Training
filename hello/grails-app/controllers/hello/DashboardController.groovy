@@ -15,7 +15,7 @@ class DashboardController {
         List subList = subscriptionService.subscriptions(session.user.username)
         List trending = topiclistService.trendTopicMethod()
 
-        render(view:"index",model:[u1:u1,topcount:topcount,subscount:subscount,subscriptions:subList,trending:trending])
+        render(view:"index",model:[u1:u1,topcount:topcount,subscount:subscount,subList:subList,trending:trending])
 
     }
 }
