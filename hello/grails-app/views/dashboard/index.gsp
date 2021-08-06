@@ -69,9 +69,9 @@
 </head>
 
 <body>
-<h3 style="background-color: darkkhaki">${flash.msgt}</h3>
-<h3 style="background-color:brown">${flash.success}</h3>
-<h3 style="background-color:lightslategray">${flash.error}</h3>
+<h3 style="background-color: darkkhaki;text-align:center">${flash.msgt}</h3>
+<h3 style="background-color:brown;text-align:center">${flash.success}</h3>
+<h3 style="background-color:lightslategray;text-align:center">${flash.error}</h3>
 <!--<h1>Dashboard</h1>-->
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">

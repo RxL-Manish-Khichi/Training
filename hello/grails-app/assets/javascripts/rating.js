@@ -5,7 +5,7 @@ function rate(id,r)
         data:{id:id,rating:r},
         success: function (response) {
             console.log("sucess")
-            alert("rated")
+            alert("Topic Rated Successfully")
         }
     });
 }

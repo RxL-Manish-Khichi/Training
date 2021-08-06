@@ -21,11 +21,11 @@
 </head>
 <body id="b11">
 <h3 style="background-color:green;text-align:center">${flash.success}</h1>
-<h3 style="background-color:red">${flash.error}</h3>
-<h3 style="background-color:green">${flash.msg1}</h3>
-<h3 style="background-color:#F5F5F5">${flash.msg2}</h3>
-<h3 style="background-color:red">${flash.msg3}</h3>
-    <h3 style="background-color:red">${flash.msg4}</h3>
+<h3 style="background-color:red;text-align:center">${flash.error}</h3>
+<h3 style="background-color:green;text-align:center">${flash.msg1}</h3>
+<h3 style="background-color:#F5F5F5;text-align:center">${flash.msg2}</h3>
+<h3 style="background-color:red;text-align:center">${flash.msg3}</h3>
+    <h3 style="background-color:red;text-align:center">${flash.msg4}</h3>
 
 <!--<div class="row g-2">
     <h1 id="hm1">Homepage</h1>

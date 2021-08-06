@@ -82,12 +82,15 @@ class UserController
                 session.name=l.username
             }
             else {
-                render("Wrong Credentials")
-                return
+               // flash.error="Wrong Credentials"
+                flash.error = "Wrong credentials"
+                redirect(actionName: "index")
             }
         }
-        render("Incorrect Email ")
-        return
+        else {
+            flash.msg3="Invalid Mail"
+            redirect(actionName: "index")
+        }
     }
 
     def logout() {
