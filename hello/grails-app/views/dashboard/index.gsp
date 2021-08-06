@@ -72,6 +72,7 @@
 <h3 style="background-color: darkkhaki;text-align:center">${flash.msgt}</h3>
 <h3 style="background-color:brown;text-align:center">${flash.success}</h3>
 <h3 style="background-color:lightslategray;text-align:center">${flash.error}</h3>
+<h3 style="background-color:lightslategray;text-align:center">${flash.message}</h3>
 <!--<h1>Dashboard</h1>-->
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -169,10 +170,10 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="" method="post">
+                                    <g:form controller="sendemail" action="send" method="post">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Email address *</label>
-                                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                            <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
                                         </div>
                                         <div class="mb-3">
@@ -182,12 +183,11 @@
                                                            for="inputGroupSelect01">Topic *</label>
                                                 </div>
 
-                                                    <select class="custom-select" name="" id="inputGroupSelect01">
-                                                        <option >Topic 1</option>
-                                                        <option>Topic 2</option>
+                                                    <g:select from="${subList.topic.topicname}" class="custom-select" name="topicname" id="inputGroupSelect01">
+
                                                         <!--  <option value="1">PUBLIC</option> -->
 
-                                                    </select>
+                                                    </g:select>
 
 
                                             </div>
@@ -200,7 +200,7 @@
 
 
 
-                                    </form>
+                                    </g:form>
 
 
                                 </div>
