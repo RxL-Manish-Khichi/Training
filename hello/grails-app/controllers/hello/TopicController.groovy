@@ -1,8 +1,11 @@
 package hello
 
+
 class TopicController {
 
     def topicService
+    def subscriptionService
+    def resourceService
 
     def topicadd() {
         Topic t=Topic.findByTopicname(params.topicname)
@@ -25,6 +28,28 @@ class TopicController {
                 flash.error ="Topic Not created"
             }
         }
+    }
+
+
+    def viewTopic(){
+        Long tid
+        Long id = Long.parseLong(params.id)
+        println id
+        Subscription sub = Subscription.get(id)
+        if(sub){
+            topic t = sub.topic
+            tid = t.id
+
+        }else{
+            tid=id
+        }
+        Topic topic = Topic.findById(tid)
+        Integer subsCount = topic.subscribers.size()
+        Integer postCount = topic.resources.size()
+        List subList = subscriptionService.topicSubscribers(tid)
+        List resourceList = resourceService.topicresourcelist(tid)
+        render(view:"topicshow",model:[topic:topic,subs:sub,subscount:subsCount,postcount:postCount,subscriber:subList,resourceList:resourceList])
+
     }
   /*  def topiccountMethod(String name){
         Integer tc = User.findByUsername(name).topics.size()

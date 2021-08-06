@@ -1,7 +1,7 @@
 package hello
 
 import org.springframework.web.multipart.MultipartFile
-
+import Enums.VisibilityEnum
 
 import grails.gorm.transactions.Transactional
 
@@ -11,6 +11,30 @@ class ResourceService {
     def resourceListMethod(){
         List<Resource> rsc = Resource.list()
         return rsc
+    }
+
+    def topicresourcelist(tid){
+        List<Resource> rsc = Resource.createCriteria().list{
+            eq("topic.id",tid)
+
+        }
+        return rsc
+
+    }
+
+  def recentResourceMethod(){
+        List<Resource> rsc = Resource.createCriteria().list {
+            "topic" {
+                eq("visibility", VisibilityEnum.PUBLIC)
+
+            }
+        }
+
+
+        rsc.sort{
+            x,y -> y.dateCreated <=> x.dateCreated
+        }
+      return rsc
     }
 
     def uploadDocumentMethod(params,request,String name) {
@@ -32,9 +56,6 @@ class ResourceService {
         }catch(Exception e){
             return null
         }
-
-
-
     }
 
 

@@ -127,4 +127,4 @@ environments:
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 server:
-    port: 8181
+    port: 8092

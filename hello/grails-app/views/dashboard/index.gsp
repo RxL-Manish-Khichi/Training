@@ -249,7 +249,7 @@
                                                            for="inputGroupSelect01">Topic *</label>
                                                 </div>
 
-                                                <g:select name="topicname" from="${topic.topicname}" class="custom-select" id="inputGroupSelect01">
+                                                <g:select name="topicname" from="${subList.topic.topicname}" class="custom-select" id="inputGroupSelect01">
                                                  <!--   <option >Topic 1</option>
                                                     <option>Topic 2</option>
                                                      <option value="1">PUBLIC</option> -->
@@ -316,7 +316,7 @@
                                                            for="inputGroupSelect01">Topic *</label>
                                                 </div>
 
-                                                <g:select from="${topic.topicname}" class="custom-select" name="topicname" id="inputGroupSelect01">
+                                                <g:select from="${subList.topic.topicname}" class="custom-select" name="topicname" id="inputGroupSelect01">
                                                   <!--  <option >Topic 1</option>
                                                     <option>Topic 2</option>
                                                      <option value="1">PUBLIC</option> -->
@@ -464,7 +464,7 @@
                         </div>
                         <div class="col">
                             <div class="row">
-                                <h5 class="card-title"><a href="#" class="card-link">${it.topic.topicname}</a></h5>
+                                <h5 class="card-title"><g:link controller="topic" action="viewTopic" params="[id:it.topic.id]" class="card-link">${it.topic.topicname}</g:link></h5>
 
                             </div>
                             <div class="row">

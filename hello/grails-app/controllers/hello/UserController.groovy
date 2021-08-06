@@ -12,10 +12,19 @@ class UserController
     def topiclistService
     def topicService
     def updateService
+    def resourceService
 
     def index() {
-        render view: "index"
+
+        List rsc = resourceService.recentResourceMethod()
+        println rsc
+
+
+        render (view: "index",model: [rsc:rsc])
     }
+
+
+
 
     def ruser() {
         if (User.findByEmail(params.email))
@@ -148,6 +157,12 @@ class UserController
     def posts(){
         render(view: "posts")
     }
+
+
+
+
+
+
 
 /*    def updateProfile(){
         String name= session.user.username
