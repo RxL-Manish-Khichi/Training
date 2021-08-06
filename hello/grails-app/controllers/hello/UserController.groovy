@@ -13,14 +13,17 @@ class UserController
     def topicService
     def updateService
     def resourceService
+    def toppostService
+
 
     def index() {
 
         List rsc = resourceService.recentResourceMethod()
+        List<Resource> rlist=toppostService.topPost()
         println rsc
 
 
-        render (view: "index",model: [rsc:rsc])
+        render (view: "index",model: [rsc:rsc,rlist:rlist])
     }
 
 
@@ -49,6 +52,26 @@ class UserController
                 redirect(actionName: "index")
             }
         }
+
+ /*   def loginUser(){
+        def u = loginService.loginUser(params)
+        if(u!= null){
+            if(u.password==params.password){
+                session.setAttribute('user',u)
+                redirect controller:"dashboard",actionName: "index"
+            }
+            else{
+                flash.msg1="password incorrect"
+                redirect (actionName: "index")
+            }
+        }
+        else
+        {
+            flash.message="user not exist"
+            redirect(actionName: "index")
+        }
+
+    } */
 
     def loger() {
         def l= User.findByEmail(params.email)

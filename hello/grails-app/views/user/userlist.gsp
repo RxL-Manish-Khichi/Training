@@ -26,7 +26,7 @@
         border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
     body{
-        background-color:royalblue;
+        background-color:salmon;
     }
     </style>
 </head>

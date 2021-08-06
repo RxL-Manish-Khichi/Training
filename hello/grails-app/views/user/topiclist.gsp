@@ -26,13 +26,13 @@
         border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
     body{
-        background-color:royalblue;
+        background-color:#f3ff6a;
     }
     </style>
 </head>
 
 <body>
-<h1>Users(Admin)</h1>
+<h1>Topics List</h1>
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">

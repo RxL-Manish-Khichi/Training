@@ -31,6 +31,7 @@ class ResourceController {
 
         }
         else{
+
             flash.error="Failed To Link Saved"
             redirect(controller:"dashboard",action:"index")
         }
@@ -46,4 +47,11 @@ class ResourceController {
         }
         else render("Error")
     }
+
+
+
+
+
+
+
 }

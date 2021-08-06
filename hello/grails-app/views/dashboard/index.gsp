@@ -1153,12 +1153,12 @@
                                 </div>-->
                                 <div class="col-auto">
                                     <div class="mb-3">
-                                        <a href="#" class="link-primary">Mark as read</a>
+                                        <g:link controller="markread" action="markAsRead" params="[id: it.id]" class="link-primary">Mark as read</g:link>
                                     </div>
                                 </div>
                                 <div class="col-auto">
                                     <div class="mb-3">
-                                        <a href="#" class="link-primary">View Post</a>
+                                        <g:link controller="resourcerating" action="index" params="[id: it.id]"  class="link-primary">View Post</g:link>
                                     </div>
                                 </div>
 
@@ -1233,7 +1233,7 @@
                                         </div>
                                         <div class="col-auto">
                                             <div class="mb-3">
-                                                <a href="#" class="link-primary">View Post</a>
+                                                <g:link controller="resourcerating" action="index" params="[id: it.id]"   class="link-primary">View Post</g:link>
                                             </div>
                                         </div>
 

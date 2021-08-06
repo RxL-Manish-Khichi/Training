@@ -8,6 +8,7 @@ class Resource{
     Date dateCreated
     Date lastUpdated
     static belongsTo=[createdBy:User,topic:Topic]
+    static hasMany=[readingitems:ReadingItem]
 
 
 

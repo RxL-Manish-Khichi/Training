@@ -11,6 +11,12 @@
     <link href="link.css" rel="stylesheet" >
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <style>
+    #fif {
+        width: 100px;
+        height: 100px;
+    }
+    </style>
     <title>Link Sharing</title>
 </head>
 <body id="b11">
@@ -19,6 +25,7 @@
 <h3 style="background-color:green">${flash.msg1}</h3>
 <h3 style="background-color:#F5F5F5">${flash.msg2}</h3>
 <h3 style="background-color:red">${flash.msg3}</h3>
+    <h3 style="background-color:red">${flash.msg4}</h3>
 
 <!--<div class="row g-2">
     <h1 id="hm1">Homepage</h1>
@@ -230,19 +237,20 @@
 
 
             </div>
+            <g:each in="${rlist}" var="it">
 
             <div class="card-body">
                 <div class="row">
                     <div class="col-auto">
                         <figure class="figure">
-                            <img src="https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png" id="pi1"class="figure-img img-fluid rounded" alt="...">
+                           <asset:image src="${it.createdBy.photo}" id="fif"></asset:image>
                         </figure>
                     </div>
                     <div class="col">
-                        <h5 class="card-title">Uday Pratap singh</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">@Uday</h6>
+                        <h5 class="card-title">${it.createdBy.firstname} ${it.createdBy.lastname}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@${it.createdBy.username}</h6>
 
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <p class="card-text">${it.description}</p>
                         <div class="row">
                             <div class="col">
                                 <div class="mb-3">
@@ -265,8 +273,15 @@
                     </div>
 
                 </div>
+
             </div>
+                <div class="divider"></div>
+
+            </g:each>
+
+
         </div>
+
     </div>
     <div class="col-md-6">
         <div class="card" id="l2">
@@ -274,7 +289,7 @@
             <div class="card-body">
                 <form action="/user/loger" method="post">
                     <div class="mb-3">
-                        <label for="exampleInputEmail1" class="form-label" aria-required="true">Email address/Username *</label>
+                        <label for="exampleInputEmail1" class="form-label" aria-required="true">Email address *</label>
                         <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                     </div>
                     <div class="mb-3">

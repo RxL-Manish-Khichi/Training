@@ -68,6 +68,7 @@ class ResourceService {
         user.addToResources(rsc)
         t.addToResources(rsc)
         try{
+
             rsc.save(flush:true,failOnError:true)
             return rsc
         }catch(Exception e){

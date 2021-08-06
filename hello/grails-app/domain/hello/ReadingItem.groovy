@@ -10,6 +10,7 @@ class ReadingItem{
 
 
 
+
     static constraints = {
         isRead blank:false
         /* email blank: false,nullable: false
