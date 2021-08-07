@@ -15,12 +15,15 @@ class DashboardController {
         Integer subscount=topiclistService.subscribecountMethod(session.user.username)
         List subList = subscriptionService.subscriptions(session.user.username)
         List trending = topiclistService.trendTopicMethod()
-        List topic = topiclistService.tlistMethod()
+       // List resourceList = resourceService.inboxResourceMethod()
+        List unread = resourceService.inboxListMethod(session.user.username)
 
-        List resourceList = resourceService.resourceListMethod()
+      //  List topic = topiclistService.tlistMethod() ,topic:topic
+
+      //  List resourceList = resourceService.resourceListMethod()
       //  println resourceList
 
-        render(view:"index",model:[u1:u1,topcount:topcount,subscount:subscount,subList:subList,trending:trending,topic:topic,resourceList:resourceList])
+        render(view:"index",model:[u1:u1,topcount:topcount,subscount:subscount,subList:subList,unread:unread,trending:trending])
 
     }
 }

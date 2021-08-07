@@ -22,6 +22,33 @@ class ResourceService {
 
     }
 
+    def inboxResourceMethod(){
+        List<Resource> inb = Resource.list()
+        return inb
+    }
+
+    def inboxListMethod(name){
+        User user = User.findByUsername(name)
+        List unList = ReadingItem.createCriteria().list{
+            eq('isRead',false)
+            eq('user.id',user.id)
+        }
+        return unList
+
+    }
+
+    def markReadMethod(params,name){
+        Long resId = Long.parseLong(params.id)
+        User user = User.findByUsername(name)
+        ReadingItem readItem = ReadingItem.createCriteria().get{
+            eq('resource.id',resId)
+            eq('user.id',user.id)
+        }
+        readItem.isRead = true
+        readItem.save(flush:true)
+
+    }
+
   def recentResourceMethod(){
         List<Resource> rsc = Resource.createCriteria().list {
             "topic" {
@@ -52,6 +79,8 @@ class ResourceService {
         t.addToResources(rsc)
         try{
             rsc.save(flush:true,failOnError:true)
+            List subscriberList = subscribersList(t.id)
+            addToUnreadItem(subscriberList,rsc)
             return rsc
         }catch(Exception e){
             return null
@@ -62,7 +91,7 @@ class ResourceService {
     def uploadLinkMethod(params,String name){
         User user = User.findByUsername(name)
         def t = Topic.findByTopicname(params.topicname)
-        Long topicId = t.id
+       // Long topicId = t.id
         String link = params.link
         LinkResource rsc = new LinkResource(description: params.description,topic:t,url:link)
         user.addToResources(rsc)
@@ -70,12 +99,52 @@ class ResourceService {
         try{
 
             rsc.save(flush:true,failOnError:true)
+            List subscriberList = subscribersList(t.id)
+            addToUnreadItem(subscriberList,rsc)
             return rsc
         }catch(Exception e){
             return null
         }
 
     }
+
+    def subscribersList(topicId){
+        List userIds = Subscription.createCriteria().list(){
+            eq('topic.id',topicId)
+        }
+        return userIds
+    }
+
+    def userResourceList(name){
+        List list = User.findByUsername(name).resources.asList()
+        return list
+    }
+
+    def addToUnreadItem(subscriberList,newResource){
+        Boolean isRead = false
+        subscriberList.each{
+            User us = it.user
+            ReadingItem readItem = new ReadingItem(isRead:isRead,resource: newResource,user:us)
+            try {
+                readItem.save(flush:true,failOnError:true)
+                try{
+                    us.addToReadingitems(readItem)
+                    newResource.addToReadingItem(readItem)
+                    us.save(flush:true,failOnError:true)
+                    newResource.save(flush:true,failOnError: true)
+                }catch(Exception e){
+                    return null
+
+                }
+
+            }catch(Exception e){
+                return null
+
+            }
+        }
+
+    }
+
 
 
 
