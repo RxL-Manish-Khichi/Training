@@ -9,6 +9,33 @@ class ToppostService {
 
     }
     List<Resource> topPost(){
+        List<ResourceRating> l = ResourceRating.createCriteria().list{
+            projections{
+                avg("score");
+            }
+            groupProperty("resource");
+        }
+        Map resourceRating= [:]
+        println "post--->>>"+l
+        l.each{
+            resourceRating.put(it[1],it[0]);
+        }
+        println "maptopPost---->>>> "+resourceRating
+        resourceRating=resourceRating.sort{it.value};
+        println "aftersort------->>>>" + resourceRating
+        List<Resource> toppost = [];
+        resourceRating.each{
+            toppost.push(it.key);
+        }
+        List<Resource>revtoppost = toppost.reverse();
+        if(revtoppost.size()>=5)
+        {
+            revtoppost=revtoppost.subList(0,5)
+        }
+        println "toppost----->>> "+revtoppost;
+        return revtoppost;
+    }
+   /* List<Resource> topPost(){
         Map<Integer,Integer> mp =[:]
         Resource.list().each {
             if(ResourceRating.findByResource(it)) {
@@ -34,5 +61,5 @@ class ToppostService {
             m=m.subList(0,5)
         }
         return m
-    }
+    } */
 }

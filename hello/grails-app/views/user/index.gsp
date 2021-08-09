@@ -299,9 +299,10 @@
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <a href="#" class="link-primary">Forget Password?</a>
+                                <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#fpModal">Forget Password?</a>
                             </div>
                         </div>
+
                         <div class="col">
                             <button type="submit" class="btn btn-primary" id="l1">Login</button>
                         </div>
@@ -311,6 +312,46 @@
 
 
                 </form>
+
+                <div class="modal fade" id="fpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Forget Password</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <g:form controller="user" action="forgotPassword" method="post">
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label" aria-required="true">Email address *</label>
+                                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formGroupExampleInput" class="form-label">Answer of Security Question * </label>
+                                        <input type="text" name="securityQuestion" class="form-control" id="formGroupExampleInput" placeholder="" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">New Password *</label>
+                                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="exampleInputPassword1" class="form-label">Confirm New Password *</label>
+                                        <input type="password" name="confirmpassword" class="form-control" id="exampleInputPassword1" required>
+                                    </div>
+                                    <div>
+                                    <button type="submit" class="btn btn-primary">Change Password</button>
+                                    </div>
+                                </g:form>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -351,6 +392,10 @@
                         <label for="formFileSm" class="form-label">Photo</label>
                         <input class="form-control form-control-sm" name="image" id="formFileSm" type="file" accept="image/*">
                     </div>
+                    <div class="mb-3">
+                        <label for="formGroupExampleInput" class="form-label">Security Question *- Whats Your First School Name?</label>
+                        <input type="text" name="securityQuestion" class="form-control" id="formGroupExampleInput" placeholder="" required>
+                    </div>
                     <button type="submit" name="register" class="btn btn-primary" id="l1">Register</button>
                 </form>
             </div>
@@ -368,7 +413,16 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-<script src="link.js></script>
+    <script src="link.js></script>"></script>
+    <script>
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', function () {
+            myInput.focus()
+        })
+    </script>
+
 
   </body>
 </html>

@@ -8,6 +8,7 @@ class User{
     String lastname
     String confirmpassword
     String photo
+    String securityQuestion
     boolean admin
     boolean active
     Date dateCreated

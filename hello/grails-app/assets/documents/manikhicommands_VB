@@ -1,0 +1,351 @@
+sqlplus sys/oracle@127.0.0.1:1521/ORCL AS SYSDBA
+CREATE USER linksharing IDENTIFIED BY rxlogix DEFAULT TABLESPACE USERS QUOTA 250M ON USERS;
+GRANT CONNECT, CREATE TABLE, CREATE SESSION, RESOURCE TO linksharing;
+
+Department d1=new Department(departmentName:"Computer Science",departmentId:"10",location:"Delhi")
+d1.save(flush:true,failOnError:true)
+Department d2=new Department(departmentName:"Electronics",departmentId:"11",location:"Hyderabad")
+d2.save(flush:true,failOnError:true)
+Department d3=new Department(departmentName:"Automobile",departmentId:"12",location:"Punjab")
+d3.save(flush:true,failOnError:true)
+Department d4=new Department(departmentName:"Chemistry",departmentId:"13",location:"Dehradhun")
+d4.save(flush:true,failOnError:true)
+Employee e1=new Employee(empName:"Manish",empNumber:21,location:"Delhi")
+e1.save(flush:true,failOnError:true)
+Employee e2=new Employee(empName:"Rudra",empNumber:22,location:"Punjab")
+e2.save(flush:true,failOnError:true)
+Employee e3=new Employee(empName:"Prakash",empNumber:23,location:"Haryana")
+e3.save(flush:true,failOnError:true)
+Employee e4=new Employee(empName:"Talvinder",empNumber:24,location:"Assam")
+e4.save(flush:true,failOnError:true)
+
+Integer count=Department.countByDepartmentName
+
+
+
+
+// link sharing check
+
+class Topic{
+    String empName
+    int empNumber
+    String location
+    static hasMany = [departments:Department]
+
+
+
+    static constraints = {
+        location nullable: true
+        empName blank: false,nullable: false
+        empNumber unique: true
+    }
+    static  mapping = {
+        table 'EMP'
+        empName column: 'ENAME'
+        empNumber column: 'ENUM'
+        location column: 'ELOC'
+    }
+}
+
+//
+blank:true means the field accepts an empty string or one composed only by spaces as valid values. Eg: "", "  "
+nullable:true means the field accepts null as valid value
+blank: false protects empty values( e.g. "", " ", etc) from being set on that field. This has nothing to do with the field having the constraint NOT NULL on mysql. That happened because Grails constraints default to nullable: false on every field unless you explicitly set it to nullable: true.
+
+
+
+
+//
+transient-
+Defines a list of property names that should not be persisted to the database. This is often useful if you have read-only accessor methods ("getters") that are helper methods but get confused as being persistence-related.
+
+Examples
+class Author {
+   String name
+   String getUpperCaseName() { name.toUpperCase() }
+   static transients = ['upperCaseName']
+}
+
+Here we have an accessor that takes the name and converts it to uppercase. It doesn't make sense to persist this derived value, so we mark it as transient adding its JavaBean property name to the transients list.
+
+
+
+
+// link sharing check
+
+class Topic{
+    String name
+  //  User createdBy
+    Date dateCreated
+    Date lastUpdated
+  //  enum visibility //public,private
+  static belongsTo=[createdBy:User]
+    static hasMany = [users:User]
+
+
+
+    static constraints = {
+        name blank: false,nullable: false
+        User unique: true
+    }
+    static  mapping = {
+        table 'TOP'
+        name column: 'TNAME'
+        createdBy column: 'CREAT'
+        dateCreated column: 'DCREATE'
+        lastUpdated column: 'LUPDATE'
+        visibility column: 'VISIBLE'
+
+
+    }
+}
+
+
+
+class Subscription{
+  //  Topic topic
+  //  User user
+    enum seriousness  //serious,very serious,casual
+    Date dateCreated
+    static belongsTo=[topic:Topic,user:User]
+    static hasMany = [resources:Resource]
+
+
+
+    static constraints = {
+        // name blank: false,nullable: false
+      //  User unique: true
+    }
+    static  mapping = {
+        table 'SUBS'
+        name column: 'TNAME'
+        createdBy column: 'CREAT'
+        dateCreated column: 'DCREATE'
+        lastUpdated column: 'LUPDATE'
+        visibility column: 'VISIBLE'
+
+
+    }
+}
+
+
+
+class User{
+    String email
+    String username
+    String password
+    String firstname
+    String lastname
+    byte photo
+    boolean admin
+    boolean active
+    Date dateCreated
+    Date lastUpdated
+    static hasMany = [topics:Topic,subscriptions:subscription,resources:resource,readingitems:ReadingItem]
+
+
+
+    static constraints = {
+        email(unique:true,email:true)
+        username unique: true
+        firstname blank: false,nullable: false
+        lastname blank: true,nullable: false
+        password unique: true
+    }
+    static  mapping = {
+        table 'USER'
+        email column: 'EMAIL'
+        username column: 'UNAME'
+        password column: 'PWORD'
+        firstname column: 'FNAME'
+        lastname column: 'LNAME'
+        dateCreated column: 'DCREATE'
+        lastUpdated column: 'LUPDATE'
+
+
+    }
+}
+
+
+
+class LinkResource{
+    String url
+    static belongsTo = [resource:Resource]
+
+
+
+    static constraints = {
+        url blank: false,nullable: false
+
+    }
+    static  mapping = {
+        table 'LRESO'
+        url column: 'URL'
+
+
+
+    }
+}
+
+
+class DocumentResource{
+    String filePath
+
+    static hasMany = [resources:Resource]
+
+
+
+    static constraints = {
+        filePath blank: false,nullable: false
+    }
+    static  mapping = {
+        table 'DRESO'
+        filePath column: 'FPATH'
+
+
+    }
+}
+
+
+class Resource{
+    String description
+  //  User createdBy
+   // Topic topic
+    Date dateCreated
+    Date lastUpdated
+    static belongsTo=[createdBy:User,
+    static hasMany = [resources:Resource]
+
+
+
+    static constraints = {
+        description blank: false,nullable: false
+
+    }
+    static  mapping = {
+        table 'RESO'
+        description column: 'DESCP'
+        createdBy column: 'CREATB'
+        topic column: 'TOPC'
+        dateCreated column: 'DRCR'
+        lastUpdated column: 'LRCR'
+
+
+    }
+}
+
+class ReadingItem{
+  //  Resource resource
+  //  User user
+    Boolean isRead
+    static belongsTo=[user:User,resource:Resource]
+    static hasMany = [resources:Resource]
+
+
+
+    static constraints = {
+        /* email blank: false,nullable: false
+        username unique: true
+        firstname blank: false,nullable: false
+        lastname blank: true,nullable: false
+        password unique: true */
+    }
+    static  mapping = {
+        table 'RITEM'
+        Resource column: 'RSOUR'
+        User column: 'USE'
+        isRead column: 'ISR'
+
+
+    }
+}
+
+
+
+class ResourceRating{
+    Resource resource
+    User user
+    int score
+    static belongsTo=[user:User,resource:Resource]
+    static hasMany = [resources:Resource]
+
+
+
+    static constraints = {
+        /* email blank: false,nullable: false
+        username unique: true
+        firstname blank: false,nullable: false
+        lastname blank: true,nullable: false
+        password unique: true */
+    }
+    static  mapping = {
+        table 'RRATE'
+        Resource column: 'RSOUR1'
+        User column: 'USE1'
+        score column: 'SCR'
+
+
+    }
+}
+
+
+
+
+Department.list()
+Department.list(offset:1,max:3)
+Employee.list()
+Employee.list(offset:1,max:2)
+Employee.list(sort:"empName",order:"asc")
+Department.findById("23")
+
+Department department=Department.findBydepartmentNameORdepartmentId("cs","29")
+println department
+Department.findBydepartmentNameOrdepartmentId("cs","29")
+
+
+
+
+
+
+Department.list()
+Employee.list()
+
+Author a1=new Author(name:"Manish")
+a1.save(flush:true)
+Book b1=new Book(title:"Work")
+b1.save(flush:true)
+Author.findTitle("Manish")
+Author author=Author.findByid(42)
+
+
+Author author=Author.findByName("Manish")
+
+
+
+Author author=new Author(name:"Kabir")
+Book book=new Book(title:"Amritwani")
+author.addToBooks(book).save()
+
+
+Book b1=Book.findByTitle("Amritwani")
+
+
+
+http://docs.grails.org/3.1.1/ref/Domain%20Classes/createCriteria.html
+
+
+
+User u1=new User(email:"manish@gmail.com",username:"manish",password:"hell",firstname:"m",lastname:"k")
+u1.save(flush:true,failOnError:true)
+
+
+
+
+User u = User.findById(2)
+println u.firstName
+
+ 
+
+Topic t = new Topic(name:"Grails",createdBy:u)
+t.save(flush:true,failOnError:true)
+

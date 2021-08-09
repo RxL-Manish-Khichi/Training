@@ -1,5 +1,6 @@
 package hello
 
+
 import grails.validation.ValidationException
 
 
@@ -114,6 +115,9 @@ class UserController
         render(view:"topiclist",model:[topicl:list])
     }
 
+
+
+
     def editprof(){
       //User u=session.getAttribute("user")
         Integer topcount=topiclistService.topiccountMethod(session.user.username)
@@ -183,6 +187,42 @@ class UserController
     def posts(){
         render(view: "posts")
     }
+
+
+    def forgotPassword(){
+       // println "mani"
+        User u = User.findByEmail(params.get("email"))
+        println u
+
+            if(u.securityQuestion==(params.get("securityQuestion") as String))
+            {
+                u.password = params.get("password");
+                u.confirmpassword = params.get("confirmpassword")
+                u.username = u.username
+                u.firstname=u.firstname
+                u.lastname=u.lastname
+                u.securityQuestion = u.securityQuestion
+                u.photo = u.photo
+                u.email = u.email
+                u.save(flush:true,failOnError:true)
+                flash.success="PassWord Changed Successfully"
+                redirect(controller: "user",action: "index")
+            }
+            else{
+                flash.error="Wrong Security Answer"
+                redirect(actionName: "index")
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 
 
 
