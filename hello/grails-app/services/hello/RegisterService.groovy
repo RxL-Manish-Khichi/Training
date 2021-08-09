@@ -23,6 +23,10 @@ class RegisterService {
 
         try{
             ru.save(flush:true,failOnError:true)
+            if(ru.id==1){
+                ru.admin=true
+                ru.save(flush:true,failOnError:true)
+            }
             return ru
 
     }catch(Exception e){

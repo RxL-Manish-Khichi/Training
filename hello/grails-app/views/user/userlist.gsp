@@ -32,6 +32,7 @@
 </head>
 
 <body>
+<h3 style="background-color:green;text-align:center">${flash.message}</h3>
 <h1>Users(Admin)</h1>
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -123,6 +124,7 @@
                 <th>Last Name</th>
                 <th>Active</th>
                 <th>Manage</th>
+                <th>Role</th>
 
             </tr>
             </thead>
@@ -134,8 +136,20 @@
                 <td>${User.email}</td>
                 <td>${User.firstname}</td>
                 <td>${User.lastname}</td>
-                <td>Yes</td>
-                <td><a href="" class="activate">Deactivate</a></td>
+                <td>${User.active}</td>
+                <g:if test="${User.isActive()}">
+                    <td><g:link controller="user" action="deActivateUser" params="${[name:User.username]}" class="activate">Deactivate</g:link></td>
+                </g:if>
+                    <g:else>
+                <td><g:link controller="user" action="activateUser" params="${[name:User.username]}" class="activate">Activate</g:link></td>
+                    </g:else>
+                <g:if test="${User.isAdmin()}">
+                    <td>Admin</td>
+                </g:if>
+                <g:else>
+                    <td><g:link controller="user" action="makeAdmin" params="${[name:User.username]}" class="activate">Make Admin</g:link></td>
+                </g:else>
+
             </tr>
             </g:each>
 

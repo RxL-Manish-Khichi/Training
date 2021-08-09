@@ -299,7 +299,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#fpModal">Forget Password?</a>
+                                <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#fpModal">Forgot Password?</a>
                             </div>
                         </div>
 
@@ -317,7 +317,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Forget Password</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Forgot Password</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">

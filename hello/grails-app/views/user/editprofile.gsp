@@ -134,19 +134,24 @@
                 <div class="card-header">
                     Topics
                 </div>
+                <g:each in="${ulist}" var="it">
                 <div class="card-body">
                     <div class="row">
                         <div class="col-auto">
-                            <figure class="figure" id="fif">
-                                <img src="https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png"
-                                     id="pi1" class="figure-img img-fluid rounded" alt="...">
+                            <figure class="figure" >
+                                <asset:image src="${it.createdBy.photo}" id="fif"></asset:image>
                             </figure>
 
                         </div>
                         <div class="col">
                             <div class="row">
+                                <div class="col-auto">
+                                    <a href="">${it.topicname}(${it.visibility})</a>
+                                </div>
                                 <h5 class="card-title">
                                     <div class="row">
+
+
                                         <div class="col-auto">
                                             <input class="form-control" type="text" placeholder="Default input">
                                         </div>
@@ -161,24 +166,25 @@
                             </div>
                             <div class="row">
                                 <div class="col">
+                                    <h9 class="text-muted">@${ it.createdBy.username }</h9>
+
+
+                                </div>
+                                <div class="col">
 
 
                                     <h9 class="text-muted">Subscriptions</h9>
-                                    <a href="#" class="card-link">30</a>
+                                    <a href="#" class="card-link">${it.subscribers.size()}</a>
 
                                 </div>
 
                                 <div class="col">
-                                    <h9 class="text-muted">Topics</h9>
-                                    <a href="#" class="card-link">30</a>
+                                    <h9 class="text-muted">Posts</h9>
+                                    <a href="#" class="card-link">${it.resources.size()}</a>
 
                                 </div>
 
-                                <div class="col">
-                                    <h9 class="text-muted">@Uday</h9>
-                                    <a href="#" class="card-link">Unsubscribed</a>
 
-                                </div>
 
                             </div>
 
@@ -189,17 +195,17 @@
                     <div class="row">
                         <div class="col">
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>select</option>
-                                <option value="1">Serious</option>
-                                <option value="2">Very Serious</option>
-                                <option value="3">Casual</option>
+
+                                <option>Serious</option>
+                                <option>Very Serious</option>
+                                <option>Casual</option>
                             </select>
                         </div>
                         <div class="col">
                             <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option selected>select</option>
-                                <option value="1">Pubic</option>
-                                <option value="2">Private</option>
+
+                                <option>Pubic</option>
+                                <option>Private</option>
 
                             </select>
                         </div>
@@ -242,6 +248,7 @@
 
 
                 </div>
+                </g:each>
             </div>
 
 

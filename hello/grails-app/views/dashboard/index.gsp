@@ -363,6 +363,8 @@
                            data-bs-toggle="dropdown" aria-expanded="false">${session.user.firstname}
                         </a>
 
+                        <g:if test="${session.user.admin}">
+
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
                             <li><a class="dropdown-item" href="/user/userlist">Users</a></li>
@@ -372,6 +374,17 @@
 
 
                         </ul>
+                        </g:if>
+                        <g:else>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
+                            
+                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+
+
+                        </ul>
+                        </g:else>
+
                     </li>
 
                 </ul>
@@ -477,13 +490,13 @@
 
 
                                     <h9 class="text-muted">Subscriptions</h9>
-                                    <a href="#" class="card-link">30</a>
+                                    <a href="#" class="card-link">${subscount}</a>
 
                                 </div>
 
                                 <div class="col">
                                     <h9 class="text-muted">Topics</h9>
-                                    <a href="#" class="card-link">30</a>
+                                    <a href="#" class="card-link">${topcount}</a>
 
                                 </div>
 

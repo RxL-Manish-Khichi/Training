@@ -120,10 +120,12 @@ class UserController
 
     def editprof(){
       //User u=session.getAttribute("user")
+        List list=User.findByUsername(session.user.username).topics.asList()
+        println list
         Integer topcount=topiclistService.topiccountMethod(session.user.username)
         Integer subscount=topiclistService.subscribecountMethod(session.user.username)
 
-        render(view: "editprofile",model:[topcount:topcount,subscount:subscount])
+        render(view: "editprofile",model:[ulist:list,topcount:topcount,subscount:subscount])
     }
 
    def updatePassword(){
@@ -186,6 +188,41 @@ class UserController
 
     def posts(){
         render(view: "posts")
+    }
+
+    def activateUser(){
+        User user = User.findByUsername(params.name)
+        if(user.isActive()){
+            flash.message="User is Already Active"
+        }
+        else{
+            user.active=true
+            user.save(flush:true,failOnError:true)
+        }
+        redirect(controller:"user",action: "userlist")
+
+    }
+
+    def deActivateUser(){
+        User user = User.findByUsername(params.name)
+        if(user.isActive()){
+            user.active=false
+            user.save(flush:true,failOnError:true)
+
+        }
+        else{
+            flash.message="User is Already Not Active"
+        }
+        redirect(controller:"user",action: "userlist")
+
+
+    }
+
+    def makeAdmin(){
+        User user=User.findByUsername(params.name)
+        user.admin=true
+        user.save(flush:true,failOnError:true)
+        redirect(controller:"user",action: "userlist")
     }
 
 
