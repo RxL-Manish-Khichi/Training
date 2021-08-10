@@ -51,6 +51,13 @@ class TopicController {
         render(view:"topicshow",model:[topic:topic,subs:sub,subscount:subsCount,postcount:postCount,subscriber:subList,resourceList:resourceList])
 
     }
+
+    def deleteTopic()
+    {
+        Topic t=Topic.get(params.id)
+        t.delete(flush:true)
+        redirect(controller:"dashboard",action: "index")
+    }
   /*  def topiccountMethod(String name){
         Integer tc = User.findByUsername(name).topics.size()
         return tc

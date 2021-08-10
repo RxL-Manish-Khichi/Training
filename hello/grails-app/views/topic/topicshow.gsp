@@ -285,7 +285,7 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-auto">
-                            <figure class="figure" id="fif">
+                            <figure class="figure">
                                 <asset:image src="${it.user.photo}" id="fif"></asset:image>
                             </figure>
                         </div>
@@ -424,9 +424,7 @@
                                 </div>
 
                                 <div class="col-auto">
-                                    <div class="mb-3">
-                                        <a href="#" class="link-primary">Mark as read</a>
-                                    </div>
+
                                 </div>
                                 <div class="col-auto">
                                     <div class="mb-3">
@@ -480,9 +478,7 @@
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <div class="mb-3">
-                                                <a href="#" class="link-primary">Mark as read</a>
-                                            </div>
+
                                         </div>
                                         <div class="col-auto">
                                             <div class="mb-3">

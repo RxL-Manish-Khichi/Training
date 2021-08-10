@@ -22,9 +22,14 @@ class UserController
         List rsc = resourceService.recentResourceMethod()
         List<Resource> rlist=toppostService.topPost()
         println rsc
-
-
         render (view: "index",model: [rsc:rsc,rlist:rlist])
+    }
+
+    def search(){
+        List<Resource> rlist=toppostService.topPost()
+        List trending = topiclistService.trendTopicMethod()
+        render(view: "search",model: [trending:trending,rlist:rlist])
+
     }
 
 
