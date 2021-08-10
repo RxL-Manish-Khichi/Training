@@ -18,6 +18,8 @@ class RegisterService {
             file.transferTo(file2);
            // println(file2.path)
             ru.photo= "/photof/${params.username}.png"
+        }else{
+            ru.photo = "/home/rxlogix/hello/grails-app/assets/images/photof/noimageupload.png"
         }
 
 

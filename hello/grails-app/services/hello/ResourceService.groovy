@@ -13,6 +13,17 @@ class ResourceService {
         return rsc
     }
 
+    def sumRating(id){
+        Resouce rsc = Resource.findById(id)
+        Long sum = ResourceRating.createCriteria().get{
+            projections{
+                avg("score")
+            }
+            eq("resource",rsc)
+        }
+        return sum
+    }
+
     def topicresourcelist(tid){
         List<Resource> rsc = Resource.createCriteria().list{
             eq("topic.id",tid)

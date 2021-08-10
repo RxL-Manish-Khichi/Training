@@ -26,9 +26,10 @@ class UserController
     }
 
     def search(){
+        String searchWord=params.word
         List<Resource> rlist=toppostService.topPost()
         List trending = topiclistService.trendTopicMethod()
-        render(view: "search",model: [trending:trending,rlist:rlist])
+        render(view: "search",model: [word:searchWord,trending:trending,rlist:rlist])
 
     }
 
@@ -107,6 +108,13 @@ class UserController
     def userlist(){
         List<User> list=userlistService.listMethod()
         render(view:"userlist",model:[userl:list])
+    }
+
+    def postlist(){
+        List<Resource>rlist=Resource.list()
+        println rlist
+
+        render(view:"postslist",model: [rlist:rlist])
     }
 
   /*  def usereprofile(){

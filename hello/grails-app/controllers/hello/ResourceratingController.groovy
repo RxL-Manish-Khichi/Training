@@ -2,11 +2,16 @@ package hello
 
 import grails.converters.JSON
 
+
+
 class ResourceratingController {
+
+    def resourceService
 
     def index() {
         User u = session.getAttribute("user")
         Resource r = Resource.findById(params.get("id"))
+      // Integer rcount=resourceService.sumRating(id) rcount:rcount,
         render(view: "index" , model: [u:u,resource:r])
 
 

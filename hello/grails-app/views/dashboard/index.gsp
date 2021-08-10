@@ -370,7 +370,7 @@
                             <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
                             <li><a class="dropdown-item" href="/user/userlist">Users</a></li>
                             <li><a class="dropdown-item" href="/user/toplist">Topics</a></li>
-                            <li><a class="dropdown-item" href="/user/posts">Posts</a></li>
+                            <li><g:link controller="user" action="postlist" class="dropdown-item">Posts</g:link></li>
                             <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
 
 
@@ -554,7 +554,7 @@
 
                         </div>
                         <div class="col">
-                            <g:link controller="topic" action="deleteTopic" params="[id:it.id]" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            <g:link controller="topic" action="deleteTopic" params="[id:it.topic.id]" onclick="return confirm('Are you sure you want to delete this item')" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                               height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                 <path
                                         d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
@@ -654,7 +654,7 @@
 
                              </div>
                              <div class="col">
-                                 <g:link controller="topic" action="deleteTopic" params="[id:it.topic.id]" class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                 <g:link controller="topic" action="deleteTopic" params="[id:it.topic.id]" onclick="return confirm('Are you sure you want to delete this item')"  class="nav-link"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                    height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                      <path
                                              d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
@@ -674,6 +674,7 @@
                      </div>
 
                  </g:else>
+                 <div class="divider"></div>
 
             </g:each>
 
@@ -904,7 +905,7 @@
 
                                 </div>
                                 <div class="col">
-                                    <g:link controller="topic" action="deleteTopic" params="[id:it.id]" class="nav-link" ><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                    <g:link controller="topic" action="deleteTopic" params="[id:it.id]" onclick="return confirm('Are you sure you want to delete this item')"  class="nav-link" ><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                       height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                         <path
                                                 d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
@@ -1048,6 +1049,7 @@
 
 
                         </div>
+                        <div class="divider"></div>
                     </g:else>
 
 

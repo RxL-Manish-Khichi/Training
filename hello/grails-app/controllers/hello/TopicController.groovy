@@ -54,7 +54,9 @@ class TopicController {
 
     def deleteTopic()
     {
-        Topic t=Topic.get(params.id)
+        println(params)
+        Topic t=Topic.findById(params.id)
+        println params.id
         t.delete(flush:true)
         redirect(controller:"dashboard",action: "index")
     }
