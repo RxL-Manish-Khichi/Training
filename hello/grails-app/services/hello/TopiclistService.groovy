@@ -25,10 +25,21 @@ class TopiclistService {
     }
 
     def trendTopicMethod(){
-        List<Topic> trendList = Topic.createCriteria().list(max:5){
+        List<Topic> trendList = Topic.createCriteria().list(){
             eq('visibility',VisibilityEnum.PUBLIC)
         }
-        return trendList
+        Integer s = trendList.size()
+        trendList.sort{
+            x,y -> y.resources.size() <=> x.resources.size()
+        }
+        if(s>5){
+            Integer t = s-5
+            return trendList.dropRight(t)
+
+        }else{
+            return trendList
+        }
+
     }
 
 }

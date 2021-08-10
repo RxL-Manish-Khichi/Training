@@ -39,4 +39,73 @@ class SubscriptionController {
 
 
     }
+
+    def changeVisibility(){
+        Topic topic = Topic.get(params.id1)
+        topic.visibility=params.visibility
+        try{
+            topic.save(flush:true,failOnError:true)
+        }catch(Exception e){
+            flash.error="error"
+        }
+        redirect(controller: "dashboard",action: "index")
+    }
+
+    def changeSeriousness(){
+        Subscription subscription = Subscription.get(params.id)
+        if(subscription){
+            subscription.seriousness=params.seriousness
+            try{
+                subscription.save(flush:true,failOnError:true)
+            }catch(Exception e){
+                flash.error="error"
+            }
+            redirect(controller: "dashboard",action: "index")
+
+
+        }
+        else{
+            User u = User.findByUsername(session.user.username)
+            Topic t=Topic.findById(params.id)
+            Subscription sub = Subscription.findByUserAndTopic(u,t)
+            sub.seriousness=params.seriousness
+            try{
+                sub.save(flush:true,failOnError:true)
+            }catch(Exception e){
+                flash.error="error"
+
+            }
+            redirect(controller: "dashboard",action: "index")
+        }
+    }
+
+    def sendSubscriptionInvite(){
+        Long topid=Long.parseLong(params.id)
+        User user = User.findByEmail(params.email)
+        Topic topic = Topic.get(topid)
+        Subscription sub = Subscription.findByTopicAndUser(topic,user)
+        if(session.user.username != user.username){
+            flash.message="Login as ${user.firstname}" redirect(url:'/')
+            session.invalidate()
+        }else{
+            if(sub==null){
+                Subscription sub1 = new Subscription(seriousness: "CASUAL")
+                topic.addToSubscribers(sub1)
+                user.addToSubscriptions(sub1)
+                topic.save(flush:true)
+                user.save(flush:true,failOnError:true)
+                sub1.save(flush:true,failOnError:true)
+                flash.message2="Subscribed Successfully"
+                redirect(controller:"dashboard",action: "index")
+
+            }else{
+                flash.message2 ="You are already subscribed in this topic!"
+                redirect(controller: "dashboard",action: "index")
+            }
+        }
+
+    }
+
+
+
 }

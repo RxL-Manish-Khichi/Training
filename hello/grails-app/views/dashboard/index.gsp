@@ -73,6 +73,7 @@
 <h3 style="background-color:brown;text-align:center">${flash.success}</h3>
 <h3 style="background-color:lightslategray;text-align:center">${flash.error}</h3>
 <h3 style="background-color:lightslategray;text-align:center">${flash.message}</h3>
+<h3 style="background-color:lightslategray;text-align:center">${flash.message2}</h3>
 <!--<h1>Dashboard</h1>-->
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -378,7 +379,7 @@
                         <g:else>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
-                            
+
                             <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
 
 
@@ -490,13 +491,13 @@
 
 
                                     <h9 class="text-muted">Subscriptions</h9>
-                                    <a href="#" class="card-link">${subscount}</a>
+                                    <a href="#" class="card-link">${it.topic.subscribers.size()}</a>
 
                                 </div>
 
                                 <div class="col">
-                                    <h9 class="text-muted">Topics</h9>
-                                    <a href="#" class="card-link">${topcount}</a>
+                                    <h9 class="text-muted">Posts</h9>
+                                    <a href="#" class="card-link">${it.topic.resources.size()}</a>
 
                                 </div>
 
@@ -510,20 +511,18 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-
-                                <option>Serious</option>
-                                <option>Very Serious</option>
-                                <option>Casual</option>
-                            </select>
+                            <g:form controller="subscription" action="changeSeriousness">
+                                <g:field type="hidden" name="id" value="${it.id}"></g:field>
+                                <g:select  onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
+                                    value="${it.seriousness}"></g:select>
+                            </g:form>
                         </div>
                         <div class="col">
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-
-                                <option>Pubic</option>
-                                <option>Private</option>
-
-                            </select>
+                            <g:form controller="subscription" action="changeVisibility">
+                                <g:field type="hidden" name="id1" value="${it.topic.id}"></g:field>
+                                <g:select  onChange="submit()" name="visibility" from="${['PUBLIC','PRIVATE']}"
+                                           value="${it.topic.visibility}"></g:select>
+                            </g:form>
                         </div>
                         <div class="col-auto">
                             <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -584,7 +583,7 @@
                                  <div class="row">
                                      <div class="col">
                                          <h9 class="text-muted">@${it.topic.createdBy.username}</h9>
-                                         <g:link controller="subscription" action="unsubscribe" params="[id:it.id]">Unsubscribe</g:link>
+                                         <g:link controller="subscription" action="unsubscribe" params="[id:it.topic.id]">Unsubscribe</g:link>
 
 
                                      </div>
@@ -592,13 +591,13 @@
 
 
                                          <h9 class="text-muted">Subscriptions</h9>
-                                         <a href="#" class="card-link">30</a>
+                                         <a href="#" class="card-link">${it.topic.subscribers.size()}</a>
 
                                      </div>
 
                                      <div class="col">
-                                         <h9 class="text-muted">Topics</h9>
-                                         <a href="#" class="card-link">30</a>
+                                         <h9 class="text-muted">Posts</h9>
+                                         <a href="#" class="card-link">${it.topic.resources.size()}</a>
 
                                      </div>
 
@@ -612,20 +611,18 @@
                          </div>
                          <div class="row">
                              <div class="col">
-                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-
-                                     <option>Serious</option>
-                                     <option>Very Serious</option>
-                                     <option>Casual</option>
-                                 </select>
+                                 <g:form controller="subscription" action="changeSeriousness">
+                                     <g:field type="hidden" name="id" value="${it.id}"></g:field>
+                                     <g:select  onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
+                                                value="${it.seriousness}"></g:select>
+                                 </g:form>
                              </div>
                              <div class="col">
-                                 <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-
-                                     <option>Pubic</option>
-                                     <option>Private</option>
-
-                                 </select>
+                                 <g:form controller="subscription" action="changeVisibility">
+                                     <g:field type="hidden" name="id1" value="${it.topic.id}"></g:field>
+                                     <g:select  onChange="submit()" name="visibility" from="${['PUBLIC','PRIVATE']}"
+                                                value="${it.topic.visibility}"></g:select>
+                                 </g:form>
                              </div>
                              <div class="col-auto">
                                  <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -844,13 +841,13 @@
 
 
                                             <h9 class="text-muted">Subscriptions</h9>
-                                            <a href="#" class="card-link">30</a>
+                                            <a href="#" class="card-link">${it.subscribers.size()}</a>
 
                                         </div>
 
                                         <div class="col">
-                                            <h9 class="text-muted">Topics</h9>
-                                            <a href="#" class="card-link">30</a>
+                                            <h9 class="text-muted">Posts</h9>
+                                            <a href="#" class="card-link">${it.resources.size()}</a>
 
                                         </div>
 
@@ -958,13 +955,13 @@
 
 
                                             <h9 class="text-muted">Subscriptions</h9>
-                                            <a href="#" class="card-link">30</a>
+                                            <a href="#" class="card-link">${it.subscribers.size()}</a>
 
                                         </div>
 
                                         <div class="col">
-                                            <h9 class="text-muted">Topics</h9>
-                                            <a href="#" class="card-link">30</a>
+                                            <h9 class="text-muted">Posts</h9>
+                                            <a href="#" class="card-link">${it.resources.size()}</a>
 
                                         </div>
 
