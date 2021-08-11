@@ -9,7 +9,10 @@ class TopicController {
 
     def topicadd() {
         Topic t=Topic.findByTopicname(params.topicname)
-        if(t){
+        User u = User.findByUsername(session.user.username)
+        def list=u.topics.asList()
+
+        if(list.contains(t)){
             flash.msgt="Topic With same Name already exists"
             redirect(controller:"dashboard",action:"index")
         }
@@ -28,6 +31,14 @@ class TopicController {
                 flash.error ="Topic Not created"
             }
         }
+    }
+
+    def editTopic(){
+        Topic topic = Topic.findById(params.id)
+        println topic
+        topic.topicname = params.topicname
+        topic.save(flush:true,failOnError:true)
+        redirect(controller: "dashboard",action: "index")
     }
 
 

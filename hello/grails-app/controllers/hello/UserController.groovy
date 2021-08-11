@@ -25,6 +25,11 @@ class UserController
         render (view: "index",model: [rsc:rsc,rlist:rlist])
     }
 
+    def frontviewpost(){
+        flash.success="Please Login first"
+        redirect(controller: "user",action: "index")
+    }
+
     def search(){
         String searchWord=params.word
         List<Resource> rlist=toppostService.topPost()
@@ -83,16 +88,24 @@ class UserController
     def loger() {
         def l= User.findByEmail(params.email)
         if (l!= null) {
-            if (l.password == params.password) {
-                session.setAttribute("user", l)
-                redirect(controller: "dashboard", action: "index")
-                session.name=l.username
+            if(l.active==false){
+                //render("Not Active")
+               flash.error="User is inactive"
+               redirect(actionName: "index")
+            }else{
+                if (l.password == params.password) {
+                    session.setAttribute("user", l)
+                    redirect(controller: "dashboard", action: "index")
+                    session.name=l.username
+                }
+                else {
+                    // flash.error="Wrong Credentials"
+                    flash.error = "Wrong credentials"
+                    redirect(actionName: "index")
+                }
+
             }
-            else {
-               // flash.error="Wrong Credentials"
-                flash.error = "Wrong credentials"
-                redirect(actionName: "index")
-            }
+
         }
         else {
             flash.msg3="Invalid Mail"
@@ -129,6 +142,18 @@ class UserController
     }
 
 
+    def clickuserprofile(){
+
+        User user = User.findById(params.id)
+        String name = user.username
+        List list = User.findByUsername(name).topics.asList()
+        List reslist = User.findByUsername(name).resources.asList()
+        List sublist = User.findByUsername(name).subscriptions.asList()
+
+        render(view: "userprofile", model: [user: user, topiclist: list, rlist: reslist, sublist: sublist])
+
+
+    }
 
 
     def editprof(){

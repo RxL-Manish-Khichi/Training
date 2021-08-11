@@ -194,20 +194,18 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-
-                                <option>Serious</option>
-                                <option>Very Serious</option>
-                                <option>Casual</option>
-                            </select>
+                            <g:form controller="subscription" action="changeSeriousness">
+                                <g:field type="hidden" name="id" value="${it.id}"></g:field>
+                                <g:select  onChange="submit()" name="seriousness" from="${['SERIOUS','CASUAL','VERY_SERIOUS']}"
+                                           value="${hello.Subscription.findByUserAndTopic(session.user,it).seriousness}"></g:select>
+                            </g:form>
                         </div>
                         <div class="col">
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-
-                                <option>Pubic</option>
-                                <option>Private</option>
-
-                            </select>
+                            <g:form controller="subscription" action="changeVisibility">
+                                <g:field type="hidden" name="id1" value="${it.id}"></g:field>
+                                <g:select  onChange="submit()" name="visibility" from="${['PUBLIC','PRIVATE']}"
+                                           value="${it.visibility}"></g:select>
+                            </g:form>
                         </div>
                         <div class="col-auto">
                             <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"

@@ -9,6 +9,7 @@ class RegisterService {
 
     def registerMethod(Map params,def request) {
         User ru = new User(params)
+        ru.active=true
 
         def file = request.getFile('image')
        // def name = file.getOriginalFilename()
@@ -19,7 +20,9 @@ class RegisterService {
            // println(file2.path)
             ru.photo= "/photof/${params.username}.png"
         }else{
-            ru.photo = "/home/rxlogix/hello/grails-app/assets/images/photof/noimageupload.png"
+
+                ru.photo= "/photof/noimageupload.png"
+
         }
 
 

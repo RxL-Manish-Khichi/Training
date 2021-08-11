@@ -227,6 +227,7 @@
 
                                         <input type="radio" onclick="rate(${resource.id},1)" name="rating" value="1"><span class="star"></span>
                                     </span>
+                                    <span>Rated By :${resource.resourceRated.size()}</span>
                                 </form>
 
                             </div>
@@ -270,7 +271,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="mb-3">
-                                <a href="#" class="link-primary">Delete</a>
+                                <g:link controller="resource" action="deleteResource" params="[id:resource.id]" class="link-primary">Delete</g:link>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -278,16 +279,20 @@
                                 <a href="#" class="link-primary">Edit</a>
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <div class="mb-3">
-                                <a href="#" class="link-primary">Download</a>
+                        <g:if test="${resource.hasProperty("filePath")}">
+                            <div class="col-auto">
+                                <div class="mb-3">
+                                    <g:link controller="resource" action="saveDocument" params="[id:it.id]" class="link-primary">Download</g:link>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-auto">
-                            <div class="mb-3">
-                                <a href="#" class="link-primary">View Full Site</a>
+                        </g:if>
+                        <g:else>
+                            <div class="col-auto">
+                                <div class="mb-3">
+                                    <a href="${resource.url}" target="_blank" class="link-primary">Open Link</a>
+                                </div>
                             </div>
-                        </div>
+                        </g:else>
 
                     </div>
 

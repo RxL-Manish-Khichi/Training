@@ -42,26 +42,7 @@
     }
     </style>
 
-    <script type="text/javascript">
-        $( document ).ready( function() {
-            $( "#save" ).click(function (){
-                $.ajax( {
-                    url: "${createLink(controller:'topic',action:'topicadd')}",
-                    type: "post",
-                    data:  $( '#topicForm' ).serialize(),
-                    success: function() {
-                        $("#carddiv").load(" #carddiv")
-                        $('#checkmodel').modal('hide');
 
-                    },
-                    error: function(xhr) {
-
-                    }
-                } );
-            });
-        });
-
-    </script>
 
 
 
@@ -70,10 +51,12 @@
 
 <body>
 <h3 style="background-color: darkkhaki;text-align:center">${flash.msgt}</h3>
-<h3 style="background-color:brown;text-align:center">${flash.success}</h3>
+<h3 style="background-color:cornsilk;text-align:center">${flash.success}</h3>
 <h3 style="background-color:lightslategray;text-align:center">${flash.error}</h3>
 <h3 style="background-color:lightslategray;text-align:center">${flash.message}</h3>
 <h3 style="background-color:lightslategray;text-align:center">${flash.message2}</h3>
+
+
 <!--<h1>Dashboard</h1>-->
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -100,7 +83,7 @@
                         </svg>
                         </a>
                     </li>
-                    <div id="chechmodel">
+                    <div id="checkmodel">
                     <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog" >
@@ -111,7 +94,8 @@
                                             aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <g:form id="topicForm" name="topicForm">
+                                    <h3 id="test" style="background-color:lightslategray;text-align:center"></h3>
+                                    <g:form controller="topic" action="topicadd" name="topicForm">
                                         <div class="mb-3">
                                             <label for="topicnamec" class="form-label">Name *</label>
                                             <input type="text" name="topicname" class="form-control"
@@ -133,14 +117,15 @@
 
 
                                         </div>
+                                        <div class="mb-3">
+                                            <button type="submit" class="btn btn-primary" >Save</button>
+                                        </div>
+
 
 
 
 
                                     </g:form>
-                                    <div class="mb-3">
-                                        <button type="submit" id="save" class="btn btn-primary" >Save</button>
-                                    </div>
 
 
                                 </div>
@@ -419,7 +404,7 @@
                         <div class="row">
                             <div class="col-auto">
                                 <figure class="figure" >
-                                    <asset:image src="/photof/${session.name}.png" id="fif"/>
+                                 <g:link controller="user" action="clickuserprofile">   <asset:image src="${session.user.photo}" id="fif"/></g:link>
 
                                     <!--     <img src="https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png"
                                             id="pi1" class="figure-img img-fluid rounded" alt="...">-->
@@ -480,16 +465,25 @@
                     <div class="row">
                         <div class="col-auto">
                             <figure class="figure">
-                                <asset:image src="${it.topic.createdBy.photo}" id="fif"/>
+
+                            <g:link controller="user" action="clickuserprofile" params="[id:it.topic.createdBy.id]" >  <asset:image src="${it.topic.createdBy.photo}" id="fif"/></g:link>
 
 
                             </figure>
                         </div>
                         <div class="col">
                             <div class="row">
+                                <div class="tName">
                                 <h5 class="card-title"><g:link controller="topic" action="viewTopic" params="[id:it.topic.id]" class="card-link">${it.topic.topicname}</g:link></h5>
-
+                                </div>
                             </div>
+                            <div class="editTopicName" style="display: none">
+                                <g:form controller="topic" action="editTopic" params="[id:it.topic.id]">
+                                    <input type="text" value="${it.topic.topicname}" name="topicname" required/>
+                                    <input type="submit" value="save" name="submitButton" class="btn-sm float-right login_btn">
+                                </g:form>
+                            </div>
+
                             <div class="row">
                                 <div class="col">
                                     <h9 class="text-muted">@${it.topic.createdBy.username}</h9>
@@ -543,13 +537,12 @@
 
                         </div>
                         <div class="col-auto">
-                            <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                              height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                <path
-                                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                <path
-                                        d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                            </svg></a>
+                            <div class="buttonChange">
+                                <button type ="submit" id="buttonChange" title="Edit topic"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                                </svg></button>
+                            </div>
+
 
 
                         </div>
@@ -592,7 +585,7 @@
                                  <div class="row">
                                      <div class="col">
                                          <h9 class="text-muted">@${it.topic.createdBy.username}</h9>
-                                         <g:link controller="subscription" action="unsubscribe" params="[id:it.topic.id]">Unsubscribe</g:link>
+                                         <g:link controller="subscription" action="unsubscribe" params="[id:it.id]">Unsubscribe</g:link>
 
 
                                      </div>
@@ -626,13 +619,13 @@
                                                 value="${it.seriousness}"></g:select>
                                  </g:form>
                              </div>
-                             <div class="col">
+                             %{--<div class="col">
                                  <g:form controller="subscription" action="changeVisibility">
                                      <g:field type="hidden" name="id1" value="${it.topic.id}"></g:field>
                                      <g:select  onChange="submit()" name="visibility" from="${['PUBLIC','PRIVATE']}"
                                                 value="${it.topic.visibility}"></g:select>
                                  </g:form>
-                             </div>
+                             </div>--}%
                              <div class="col-auto">
                                  <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                    height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
@@ -643,13 +636,14 @@
 
                              </div>
                              <div class="col-auto">
-                                 <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                   height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                     <path
-                                             d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                     <path
-                                             d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                 </svg></a>
+                                 <div class="col-auto">
+                                     <a class="nav-link" href="#">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                         <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                         <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                     </svg> </a>
+
+
+                                 </div>
 
 
                              </div>
@@ -894,13 +888,10 @@
 
                                 </div>
                                 <div class="col-auto">
-                                    <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                      height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                        <path
-                                                d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-                                        <path
-                                                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                                    </svg></a>
+                                    <a class="nav-link" href="#">  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                                    </svg> </a>
 
 
                                 </div>
@@ -949,10 +940,10 @@
                                         <div class="col-auto">
                                             <h9 class="text-muted">@${it.createdBy.username}</h9>
                                             <g:if test="${it.subscribers.user.email.contains(session.user.email)}">
-                                                <g:link controller="Subscription" action="unsubtrend" params="[id:it.id]" class="card-link" >Unsubscribed</g:link>
+                                                <g:link controller="Subscription" action="unsubtrend" params="[id:it.id]" class="card-link" >Unsubscribe</g:link>
                                             </g:if>
                                             <g:else>
-                                                <g:link controller="Subscription" action="subscribe" params="[id:it.id]" class="card-link" >Subscribed</g:link>
+                                                <g:link controller="Subscription" action="subscribe" params="[id:it.id]" class="card-link" >Subscribe</g:link>
 
                                             </g:else>
 
@@ -1043,7 +1034,7 @@
 
 
 
-                                <div class="divider"></div>
+
 
                             </div>
 
@@ -1101,7 +1092,6 @@
                 </div>
                 <g:each in="${unread}" var="it">
                     <g:if test="${it.resource.createdBy.username.equals(session.user.username)}">
-
 
                     </g:if>
                     <g:else>
@@ -1301,6 +1291,15 @@
     myModal.addEventListener('shown.bs.modal', function () {
         myInput.focus()
     })
+</script>
+
+    <script>
+    $(document).ready(function(){
+        $(".buttonChange").click(function(){
+            $(".tName").hide();
+            $(".editTopicName").toggle("slow");
+        });
+    });
 </script>
 
 <script>

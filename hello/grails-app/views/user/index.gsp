@@ -71,7 +71,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="mb-3">
-                                            <a href="#" class="link-primary"><h5>${it.topic.topicname}</h5></a>
+                                            <h5 class="card-title"><g:link controller="topic" action="viewTopic" params="[id:it.topic.id]" class="card-link">${it.topic.topicname}</g:link></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +119,8 @@
                                     </div>
                                     <div class="col-auto">
                                         <div class="mb-3">
-                                            <a href="#" class="link-primary">View Post</a>
+                                            <a href="/user/frontviewpost" data-bs-toggle="tooltip" data-bs-placement="top"
+                                               title="First Login"class="link-primary">View Post</a>
                                         </div>
                                     </div>
 
@@ -150,7 +151,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="mb-3">
-                                            <a href="#" class="link-primary"><h5>${it.topic.topicname}</h5></a>
+                                            <h5 class="card-title"><g:link controller="topic" action="viewTopic" params="[id:it.topic.id]" class="card-link">${it.topic.topicname}</g:link></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -194,7 +195,8 @@
                                     </div>
                                     <div class="col-auto">
                                         <div class="mb-3">
-                                            <a href="#" class="link-primary">View Post</a>
+                                            <a href="/user/frontviewpost" class="link-primary" data-bs-toggle="tooltip" data-bs-placement="top"
+                                               title="First Login">View Post</a>
                                         </div>
                                     </div>
 
@@ -262,7 +264,8 @@
                             </div>
                             <div class="col-auto">
 
-                                <a href="#" class="link-primary">View post</a>
+                                <a href="/user/frontviewpost" class="link-primary" data-bs-toggle="tooltip" data-bs-placement="top"
+                                   title="First Login">View Post</a>
 
                             </div>
 

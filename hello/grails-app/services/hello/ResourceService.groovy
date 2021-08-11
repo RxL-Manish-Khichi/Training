@@ -14,7 +14,7 @@ class ResourceService {
     }
 
     def sumRating(id){
-        Resouce rsc = Resource.findById(id)
+        Resource rsc = Resource.findById(id)
         Long sum = ResourceRating.createCriteria().get{
             projections{
                 avg("score")

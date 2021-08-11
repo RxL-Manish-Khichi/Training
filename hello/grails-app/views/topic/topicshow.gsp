@@ -32,6 +32,7 @@
 <body>
 <h1>Topic Show</h1>
 <div class="container-fluid">
+    <g:if test="${session.user}">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Link Sharing</a>
@@ -88,6 +89,18 @@
             </div>
         </div>
     </nav>
+    </g:if>
+    <g:else>
+        <nav class="navbar navbar-light bg-light" id="navii">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="https://www.google.co.in/">Link Sharing</a>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </g:else>
 </div>
 
 
@@ -104,6 +117,7 @@
                     Topic:"${topic.topicname}"
                 </div>
                 <g:each in="${topic}" var="it">
+                    <g:if test="${session.user}">
                     <g:if test="${topic.createdBy.username.equals(session.user.username)}">
                 <div class="card-body">
                     <div class="row">
@@ -265,6 +279,86 @@
 
 
                     </div>
+                    </g:else>
+                    </g:if>
+                    <g:else>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-auto">
+                                    <figure class="figure" id="fif">
+                                        <asset:image src="${topic.createdBy.photo}" id="fif"></asset:image>
+                                    </figure>
+                                </div>
+                                <div class="col">
+                                    <div class="row">
+                                        <h5 class="card-title"><a href="#" class="card-link">${topic.topicname}</a>
+                                            <h9 class="text-muted">(${topic.visibility})</h9>
+                                        </h5>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <h9 class="text-muted">@${topic.createdBy.username}</h9>
+
+
+
+
+                                        </div>
+
+
+                                        <div class="col">
+
+
+                                            <h9 class="text-muted">Subscriptions</h9>
+                                            <a href="#" class="card-link">${subscount}</a>
+
+                                        </div>
+
+                                        <div class="col">
+                                            <h9 class="text-muted">Topics</h9>
+                                            <a href="#" class="card-link">${postcount}</a>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-auto">
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+
+                                        <option>Serious</option>
+                                        <option>Very Serious</option>
+                                        <option>Casual</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-auto">
+                                    <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                      height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                                        <path
+                                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
+                                    </svg></a>
+
+
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+
+
+                        </div>
                     </g:else>
 
                     <div class="divider"></div>
@@ -428,7 +522,7 @@
                                 </div>
                                 <div class="col-auto">
                                     <div class="mb-3">
-                                        <a href="#" class="link-primary">View Post</a>
+                                        <g:link controller="resourcerating" action="index" params="[id: it.id]"  class="link-primary">View Post</g:link>
                                     </div>
                                 </div>
 
@@ -482,7 +576,7 @@
                                         </div>
                                         <div class="col-auto">
                                             <div class="mb-3">
-                                                <a href="#" class="link-primary">View Post</a>
+                                                <g:link controller="resourcerating" action="index" params="[id: it.id]"  class="link-primary">View Post</g:link>
                                             </div>
                                         </div>
 

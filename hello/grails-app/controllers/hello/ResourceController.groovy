@@ -20,6 +20,26 @@ class ResourceController {
         }
     }
 
+    def deleteResource()
+    {
+        Resource r = Resource.findById(params.get("id"))
+        Topic topic = r.topic
+        User user = r.createdBy
+        println "->>>"
+        List<ResourceRating> rt = ResourceRating.findAllByResource(r)
+        rt.each {
+            it.delete()
+        }
+        println "stage2"
+        user.removeFromResources(r)
+        println "stage3"
+        topic.removeFromResources(r)
+        println ":stage3"
+        r.delete(flush:true,failOnError: true)
+        println "done"
+        redirect(controller: "dashboard",action: "index")
+    }
+
 
 
     def saveLink(){
