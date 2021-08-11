@@ -66,13 +66,27 @@
                                 <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
                             </svg>${session.user.firstname}</a>
                     </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <g:if test="${session.user.admin}">
 
-                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
+                                <li><a class="dropdown-item" href="/user/userlist">Users</a></li>
+                                <li><a class="dropdown-item" href="/user/toplist">Topics</a></li>
+                                <li><g:link controller="user" action="postlist" class="dropdown-item">Posts</g:link></li>
+                                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
 
 
-                        </ul>
+                            </ul>
+                        </g:if>
+                        <g:else>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
+
+                                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+
+
+                            </ul>
+                        </g:else>
                     </li>
 
                 </ul>
@@ -132,7 +146,7 @@
 
             <div class="card" id="cardd">
                 <div class="card-header">
-                    Topics
+                  <h4>Topics</h4>
                 </div>
                 <g:each in="${ulist}" var="it">
                 <div class="card-body">
@@ -151,13 +165,13 @@
                                 <h5 class="card-title">
                                     <div class="row">
 
-
+%{--
                                         <div class="col-auto">
                                             <input class="form-control" type="text" placeholder="Default input">
                                         </div>
                                         <div class="col-auto">
                                             <button type="button" class="btn btn-primary">Save</button>
-                                        </div>
+                                        </div>--}%
 
                                     </div>
 

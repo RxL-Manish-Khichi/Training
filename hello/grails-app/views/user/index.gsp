@@ -50,7 +50,7 @@
 <div class="row g-3">
     <div class="col-md-6">
         <div class="card"id="cardch">
-            <h5 class="card-header">Recent shares</h5>
+            <h4 class="card-header">Recent shares</h4>
             <g:each in="${rsc}" var="it">
                 <g:if test="${it.hasProperty("filePath")}">
                     <div class="card-body">
@@ -113,9 +113,9 @@
                                     </div>
                                 </div>-->
                                     <div class="col-auto">
-                                        <div class="mb-3">
+                                        %{--<div class="mb-3">
                                             <a href="#" class="link-primary">Mark as read</a>
-                                        </div>
+                                        </div>--}%
                                     </div>
                                     <div class="col-auto">
                                         <div class="mb-3">
@@ -184,14 +184,14 @@
                                             </div>
                                         </div>-->
                                     <div class="col-auto">
-                                        <div class="mb-3">
+                                        %{--<div class="mb-3">
                                             <a href="${it.url}" class="link-primary">View Full Site</a>
-                                        </div>
+                                        </div>--}%
                                     </div>
                                     <div class="col-auto">
-                                        <div class="mb-3">
+                                        %{--<div class="mb-3">
                                             <a href="#" class="link-primary">Mark as read</a>
-                                        </div>
+                                        </div>--}%
                                     </div>
                                     <div class="col-auto">
                                         <div class="mb-3">
@@ -216,11 +216,11 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col">
-                        <h5>Top posts</h5>
+                        <h4>Top posts</h4>
                     </div>
                     <div class="col-auto">
                         <div class="container">
-                            <div class="dropdown">
+                           %{-- <div class="dropdown">
                                 <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Select Time
                                 </button>
@@ -230,7 +230,7 @@
                                     <a class="dropdown-item" href="#">1 Month</a>
                                     <a class="dropdown-item" href="#">1 Year</a>
                                 </div>
-                            </div>
+                            </div>--}%
                         </div>
                     </div>
 
@@ -288,7 +288,7 @@
     </div>
     <div class="col-md-6">
         <div class="card" id="l2">
-            <h5 class="card-header">Login</h5>
+            <h4 class="card-header">Login</h4>
             <div class="card-body">
                 <form action="/user/loger" method="post">
                     <div class="mb-3">
@@ -360,7 +360,7 @@
 
 
         <div class="card" id="l3">
-            <h5 class="card-header">Register</h5>
+            <h4 class="card-header">Register Yourself First </h4>
             <div class="card-body">
                 <form action="/user/ruser" method="post" enctype="multipart/form-data">
                     <div class="mb-3">

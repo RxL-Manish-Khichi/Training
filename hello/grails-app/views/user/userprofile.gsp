@@ -42,12 +42,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                                                  class="bi bi-award" viewBox="0 0 16 16">
-                    <path
-                            d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
-                    <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
-                </svg>
+                    <li class="nav-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-award" viewBox="0 0 16 16">
+                            <path
+                                    d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                            <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                        </svg>
                     </li>
 
 
@@ -57,13 +58,27 @@
                            data-bs-toggle="dropdown" aria-expanded="false">${session.user.firstname}
                            </a>
                     </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <g:if test="${session.user.admin}">
 
-                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
+                                <li><a class="dropdown-item" href="/user/userlist">Users</a></li>
+                                <li><a class="dropdown-item" href="/user/toplist">Topics</a></li>
+                                <li><g:link controller="user" action="postlist" class="dropdown-item">Posts</g:link></li>
+                                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
 
 
-                        </ul>
+                            </ul>
+                        </g:if>
+                        <g:else>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
+
+                                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+
+
+                            </ul>
+                        </g:else>
                     </li>
 
                 </ul>
@@ -87,13 +102,13 @@
                     <div class="row">
                         <div class="col-auto">
                             <figure class="figure">
-                                <asset:image src="${session.user.photo}" id="fif"/>
+                                <asset:image src="${user.photo}" id="fif"/>
                             </figure>
                         </div>
                         <div class="col">
                             <div class="row">
-                                <h5 class="card-title">${session.user.firstname} ${session.user.lastname}</h5>
-                                <h6 class="card-subtitle mb-2 text-muted">@${session.user.username}</h6>
+                                <h5 class="card-title">${user.firstname} ${user.lastname}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">@${user.username}</h6>
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -131,7 +146,7 @@
 
                         </div>
                         <div class="col">
-                            Post
+                            Posts
 
                         </div>
 
@@ -140,21 +155,21 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col">
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    %{--<select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                         <option selected>select</option>
                                         <option value="1">Serious</option>
                                         <option value="2">Very Serious</option>
                                         <option value="3">Casual</option>
-                                    </select>
+                                    </select>--}%
                                 </div>
 
                                 <div class="col">
-                                    <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                    %{--<a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                       height="16" fill="currentColor" class="bi bi-envelope"
                                                                       viewBox="0 0 16 16">
                                         <path
                                                 d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
-                                    </svg></a>
+                                    </svg></a>--}%
 
 
                                 </div>
@@ -210,21 +225,21 @@
                         <div class="col">
                             <div class="row">
                                 <div class="col">
-                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                    %{--<select class="form-select form-select-sm" aria-label=".form-select-sm example">
                                         <option selected>select</option>
                                         <option value="1">Serious</option>
                                         <option value="2">Very Serious</option>
                                         <option value="3">Casual</option>
-                                    </select>
+                                    </select>--}%
                                 </div>
 
                                 <div class="col">
-                                    <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                    %{--<a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                       height="16" fill="currentColor" class="bi bi-envelope"
                                                                       viewBox="0 0 16 16">
                                         <path
                                                 d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z" />
-                                    </svg></a>
+                                    </svg></a>--}%
 
 
                                 </div>
@@ -268,11 +283,11 @@
                         </div>
                         <div class="col">
                             <div class="container">
-                                <div class="input-group">
+                                %{--<div class="input-group">
                                     <input type="search" class="form-control rounded" placeholder="Search"
                                            aria-label="Search" aria-describedby="search-addon" />
                                     <button type="button" class="btn btn-outline-primary">search</button>
-                                </div>
+                                </div>--}%
                             </div>
                         </div>
 
@@ -327,13 +342,13 @@
                                     </div>
                                 </g:else>
                                 <div class="col-auto">
-                                    <div class="mb-3">
+                                    %{--<div class="mb-3">
                                         <a href="#" class="link-primary">Mark as read</a>
-                                    </div>
+                                    </div>--}%
                                 </div>
                                 <div class="col-auto">
                                     <div class="mb-3">
-                                        <a href="#" class="link-primary">View Post</a>
+                                        <g:link controller="resourcerating" action="index" params="[id: it.id]"  class="link-primary">View Post</g:link>
                                     </div>
                                 </div>
 

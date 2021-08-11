@@ -137,41 +137,42 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                          fill="currentColor" class="bi bi-file-text" viewBox="0 0 16 16">
-                            <path
-                                    d="M5 4a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5zm0 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1H5z" />
-                            <path
-                                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm10-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z" />
-                        </svg></a>
-                    </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                          fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-award" viewBox="0 0 16 16">
                             <path
-                                    d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
-                        </svg></a>
+                                    d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
+                            <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
+                        </svg>
                     </li>
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                           data-bs-toggle="dropdown" aria-expanded="false">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-award" viewBox="0 0 16 16">
-                                <path
-                                        d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z" />
-                                <path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z" />
-                            </svg></a>
+                           data-bs-toggle="dropdown" aria-expanded="false">${session.user.firstname}
+                        </a>
                     </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                        <g:if test="${session.user.admin}">
 
-                            <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
+                                <li><a class="dropdown-item" href="/user/userlist">Users</a></li>
+                                <li><a class="dropdown-item" href="/user/toplist">Topics</a></li>
+                                <li><g:link controller="user" action="postlist" class="dropdown-item">Posts</g:link></li>
+                                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
 
-                        </ul>
+
+                            </ul>
+                        </g:if>
+                        <g:else>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/user/editprof">Profile</a></li>
+
+                                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+
+
+                            </ul>
+                        </g:else>
                     </li>
 
                 </ul>
@@ -282,7 +283,7 @@
                         <g:if test="${resource.hasProperty("filePath")}">
                             <div class="col-auto">
                                 <div class="mb-3">
-                                    <g:link controller="resource" action="saveDocument" params="[id:it.id]" class="link-primary">Download</g:link>
+                                    <g:link controller="resource" action="saveDocument" params="[id:resource.id]" class="link-primary">Download</g:link>
                                 </div>
                             </div>
                         </g:if>
@@ -309,9 +310,9 @@
             <div class="row mt-2"> </div>
             <div class="row mt-2"> </div>
 
-            <div class="card" id="cardd">
+            %{--<div class="card" id="cardd">
                 <div class="card-header">
-                    Trending Topics
+                    --}%%{--Trending Topics--}%%{--
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -457,7 +458,7 @@
 
 
                 </div>
-            </div>
+            </div>--}%
 
         </div>
 

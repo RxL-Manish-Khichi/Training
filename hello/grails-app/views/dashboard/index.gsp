@@ -404,7 +404,7 @@
                         <div class="row">
                             <div class="col-auto">
                                 <figure class="figure" >
-                                 <g:link controller="user" action="clickuserprofile">   <asset:image src="${session.user.photo}" id="fif"/></g:link>
+                                    <asset:image src="${session.user.photo}" id="fif"/>
 
                                     <!--     <img src="https://www.searchpng.com/wp-content/uploads/2019/02/User-Icon-PNG.png"
                                             id="pi1" class="figure-img img-fluid rounded" alt="...">-->
@@ -450,7 +450,7 @@
                         </div>
                         <div class="col-auto">
 
-                            <a href="#" class="link-primary">View All</a>
+                            %{--<a href="#" class="link-primary">View All</a>--}%
 
                         </div>
 
@@ -572,7 +572,7 @@
                          <div class="row">
                              <div class="col-auto">
                                  <figure class="figure">
-                                     <asset:image src="${it.topic.createdBy.photo}" id="fif"/>
+                                     <g:link controller="user" action="clickuserprofile" params="[id:it.topic.createdBy.id]" >  <asset:image src="${it.topic.createdBy.photo}" id="fif"/></g:link>
 
 
                                  </figure>
@@ -809,27 +809,19 @@
                             <div class="row">
                                 <div class="col-auto">
                                     <figure class="figure" >
-                                        <asset:image src="${it.createdBy.photo}" id="fif"/>
+                                        <g:link controller="user" action="clickuserprofile" params="[id:it.createdBy.id]" >  <asset:image src="${it.createdBy.photo}" id="fif"/></g:link>
 
                                     </figure>
 
                                 </div>
                                 <div class="col">
                                     <div class="row">
-                                        <h5 class="card-title"><a href="#" class="card-link">${it.topicname}</a></h5>
+                                        <h5 class="card-title"><g:link controller="topic" action="viewTopic" params="[id:it.id]" class="card-link">${it.topicname}</g:link></h5>
                                     </div>
                                     <div class="row">
                                         <h5 class="card-title">
                                             <div class="row">
-                                                <div class="col-auto">
-                                                    <input class="form-control" type="text" placeholder="Default input">
-                                                </div>
-                                                <div class="col-auto">
-                                                    <button type="button" class="btn btn-primary">Save</button>
-                                                </div>
-                                                <div class="col-auto">
-                                                    <button type="button" class="btn btn-primary">Cancel</button>
-                                                </div>
+
                                             </div>
 
                                         </h5>
@@ -927,12 +919,12 @@
                             <div class="row">
                                 <div class="col-auto">
                                     <figure class="figure">
-                                        <asset:image src="${it.createdBy.photo}" id="fif"/>
+                                        <g:link controller="user" action="clickuserprofile" params="[id:it.createdBy.id]" >  <asset:image src="${it.createdBy.photo}" id="fif"/></g:link>
                                     </figure>
                                 </div>
                                 <div class="col-auto">
                                     <div class="row">
-                                        <h5 class="card-title"><a href="#" class="card-link">${it.topicname}</a></h5>
+                                        <h5 class="card-title"><g:link controller="topic" action="viewTopic" params="[id:it.id]" class="card-link">${it.topicname}</g:link></h5>
 
                                     </div>
 
@@ -1072,19 +1064,19 @@
                         </div>
                         <div class="col-auto">
                             <div class="container">
-                                <div class="dropdown">
+                                %{--<div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button"
                                             id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
                                         Search
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    --}%%{--<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="#">Today</a>
                                         <a class="dropdown-item" href="#">1 week</a>
                                         <a class="dropdown-item" href="#">1 Month</a>
                                         <a class="dropdown-item" href="#">1 Year</a>
-                                    </div>
-                                </div>
+                                    </div>--}%%{--
+                                </div>--}%
                             </div>
                         </div>
                       <!--  "-->
@@ -1092,6 +1084,7 @@
                 </div>
                 <g:each in="${unread}" var="it">
                     <g:if test="${it.resource.createdBy.username.equals(session.user.username)}">
+
 
                     </g:if>
                     <g:else>
@@ -1175,10 +1168,11 @@
 
                             </div>
                         </div>
+                        <div class="divider"></div>
 
                     </g:else>
 
-                    <div class="divider"></div>
+                    %{--<div class="divider"></div>--}%
 
                 </g:each>
 
