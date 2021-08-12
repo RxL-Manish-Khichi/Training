@@ -72,7 +72,15 @@ class ResourceService {
         rsc.sort{
             x,y -> y.dateCreated <=> x.dateCreated
         }
-      return rsc
+
+      Integer s=rsc.size()
+      if(s>2){
+          return rsc.subList(0,2)
+      }
+      else{
+          return rsc
+      }
+
     }
 
     def uploadDocumentMethod(params,request,String name) {

@@ -101,9 +101,9 @@
                                     </div>
 
                                     <div class="col-auto">
-                                        <div class="mb-3">
+                                        %{--<div class="mb-3">
                                             <g:link controller="resource" action="documentFile" params="[id:it.id]" class="link-primary">Download</g:link>
-                                        </div>
+                                        </div>--}%
                                     </div>
 
 
@@ -302,7 +302,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
-                                <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#fpModal">Forgot Password?</a>
+                                <a href="#" class="link-primary">Forgot Password?</a>
                             </div>
                         </div>
 
@@ -360,7 +360,7 @@
 
 
         <div class="card" id="l3">
-            <h4 class="card-header">Register Yourself First </h4>
+            <h4 class="card-header">Register Yourself First Before Login</h4>
             <div class="card-body">
                 <form action="/user/ruser" method="post" enctype="multipart/form-data">
                     <div class="mb-3">
@@ -383,7 +383,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Password *</label>
-                        <input type="password" name="password" class="form-control" id="exampleInputPassword1" required>
+                        <input type="password" name="password"  class="form-control" id="exampleInputPassword1" required>
                     </div>
                     <div class="mb-3">
                         <label for="exampleInputPassword1" class="form-label">Confirm Password *</label>
@@ -393,7 +393,7 @@
 
                     <div class="mb-3">
                         <label for="formFileSm" class="form-label">Photo</label>
-                        <input class="form-control form-control-sm" name="image" id="formFileSm" type="file" accept="image/*">
+                        <input class="form-control form-control-sm" name="image"  id="formFileSm" type="file" accept="image/*">
                     </div>
                     <div class="mb-3">
                         <label for="formGroupExampleInput" class="form-label">Security Question *- Whats Your First School Name?</label>

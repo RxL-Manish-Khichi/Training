@@ -272,18 +272,141 @@
                         </div>
                         <div class="col-auto">
                             <div class="mb-3">
-                                <g:link controller="resource" action="deleteResource" params="[id:resource.id]" class="link-primary">Delete</g:link>
+                                <g:link controller="resource" action="deleteResource" params="[id:resource.id]" onclick="return confirm('Are you sure you want to delete this Resource Item')" class="link-primary">Delete</g:link>
                             </div>
                         </div>
                         <div class="col-auto">
                             <div class="mb-3">
-                                <a href="#" class="link-primary">Edit</a>
+                         <g:if test="${resource.hasProperty("filePath")}">
+                             <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#exampleModal6">Edit</a>
+                             <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                  aria-hidden="true">
+                                 <div class="modal-dialog">
+                                     <div class="modal-content">
+                                         <div class="modal-header">
+                                             <h5 class="modal-title" id="exampleModalLabel">Share Document</h5>
+                                             <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                     aria-label="Close"></button>
+                                         </div>
+                                         <div class="modal-body">
+                                             <g:uploadForm controller="resource" action="editDocument" params="[id:resource.id]" method="post" enctype="multipart/form-data">
+
+                                                 <div class="form-group mb-3">
+                                                     <label for="exampleFormControlFile1">Document *</label>
+                                                     <input type="file" name="document" class="form-control-file" id="exampleFormControlFile1">
+                                                 </div>
+
+                                                 <div class="input-group mb-3">
+                                                     <span class="input-group-text">Description *</span>
+                                                     <textarea class="form-control" name="description" aria-label="With textarea">${resource.description}</textarea>
+                                                 </div>
+                                                 <div class="mb-3">
+                                                     <div class="input-group mb-3">
+                                                         <div class="input-group-prepend">
+                                                             <label class="input-group-text"
+                                                                    for="inputGroupSelect01">Topic *</label>
+                                                         </div>
+
+                                                         <label class="custom-select" name="topicname" id="inputGroupSelect01"><div><span>${resource.topic.topicname}</div></span>
+                                                             <!--  <option >Topic 1</option>
+                                                               <option>Topic 2</option>
+                                                                <option value="1">PUBLIC</option> -->
+
+                                                         </label>
+
+
+                                                     </div>
+
+
+                                                 </div>
+                                                 <div class="mb-3">
+                                                     <button type="submit" class="btn btn-primary" id="l1">Update</button>
+                                                 </div>
+
+
+
+                                             </g:uploadForm>
+
+
+                                         </div>
+                                         <div class="modal-footer">
+                                             <button type="button" class="btn btn-secondary"
+                                                     data-bs-dismiss="modal">Cancel</button>
+                                             <!--  <button type="button" class="btn btn-primary" >Save</button>-->
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+
+
+                         </g:if>
+                                <g:else>
+                                    <a href="#" class="link-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">Edit</a>
+                                    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Share Link</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <g:uploadForm controller="resource" action="editLink" params="[id:resource.id]">
+                                                        <div class="input-group mb-3">
+                                                            <span class="input-group-text" id="basic-addon3">Link *</span>
+                                                            <input type="link" name="link" value="${resource.url}"class="form-control" id="basic-url" aria-describedby="basic-addon3">
+                                                        </div>
+                                                        <div class="input-group mb-3">
+                                                            <span class="input-group-text">Description *</span>
+                                                            <textarea name="description"  class="form-control" aria-label="With textarea">${resource.description}</textarea>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <label class="input-group-text"
+                                                                           for="inputGroupSelect01">Topic *</label>
+                                                                </div>
+
+                                                                <label name="topicname"  class="custom-select" id="inputGroupSelect01"><span>${resource.topic.topicname}</span></label>
+                                                                    <!--   <option >Topic 1</option>
+                                                                       <option>Topic 2</option>
+                                                                        <option value="1">PUBLIC</option> -->
+
+                                                                </label>
+
+
+                                                            </div>
+
+
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <button type="submit" class="btn btn-primary" id="l1">Update</button>
+                                                        </div>
+
+
+
+                                                    </g:uploadForm>
+
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Cancel</button>
+                                                    <!--  <button type="button" class="btn btn-primary" >Save</button>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </g:else>
                             </div>
                         </div>
                         <g:if test="${resource.hasProperty("filePath")}">
                             <div class="col-auto">
                                 <div class="mb-3">
-                                    <g:link controller="resource" action="saveDocument" params="[id:resource.id]" class="link-primary">Download</g:link>
+                                    <g:link controller="resource" action="documentFile" params="[id:resource.id]" class="link-primary">Download</g:link>
                                 </div>
                             </div>
                         </g:if>

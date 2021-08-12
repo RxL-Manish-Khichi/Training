@@ -1,5 +1,7 @@
 package hello
 
+import org.springframework.web.multipart.MultipartFile
+
 class ResourceController {
 
     def resourceService
@@ -18,6 +20,31 @@ class ResourceController {
             redirect(controller:"dashboard",action:"index")
 
         }
+    }
+
+    def editLink(){
+        Resource r = Resource.findById(params.id)
+        r.description = params.description
+        r.url = params.link
+        r.save(flush:true,failOnError:true)
+        redirect(controller: "resourcerating",action: "index", params:[id:r.id])
+    }
+    def editDocument(params,request){
+        Resource r = Resource.findById(params.id)
+        r.description = params.description
+        MultipartFile doc = request.getFile('document')
+        if(doc && !doc.empty){
+            String fName = doc.getOriginalFilename()
+            String fPath = "/home/rxlogix/hello/grails-app/assets/documents/" + fName
+            File file= new File(fPath)
+            doc.transferTo(file)
+            r.filePath = fPath
+        }
+        else{
+            r.filePath = r.filePath
+        }
+        r.save(flush:true,failOnError:true)
+        redirect(controller: "resourcerating",action: "index", params:[id:r.id])
     }
 
     def deleteResource()

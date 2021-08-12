@@ -546,7 +546,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-auto">
-                                    <figure class="figure" id="fif">
+                                    <figure class="figure">
                                         <asset:image src="${it.createdBy.photo}" id="fif"></asset:image>
                                     </figure>
                                 </div>
